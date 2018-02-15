@@ -1,0 +1,27 @@
+
+vi /etc/apt/apt.conf.d/50unattended-upgrades
+
+İlk login olduğumda top ile baktığımda proccess'lerde unattended-upgrades çalıştığını gördüm, ilgili dosya /etc/apt/apt.conf.d/50unattended-upgrades
+Burada istemediğinizin önüne // koyarak o APT source'larını indirtmeyebilirsiniz.
+
+disable lines with // if you do not want to autoupdate related APT sources.
+
+Diğer bir yöntem ise 
+Another way
+
+APT::Periodoic::Update-Package-Lists "1"; --> APT::Periodic::Update-Package-Lists "0";
+
+Elle test etmek istersek
+Manually execute 
+
+noroot@ubuntu1:~$ sudo unattended-upgrade -d
+Initial blacklisted packages: 
+Initial whitelisted packages: 
+Starting unattended upgrades script
+Allowed origins are: ['o=Ubuntu,a=xenial', 'o=Ubuntu,a=xenial-security', 'o=UbuntuESM,a=xenial']
+pkgs that look like they should be upgraded: 
+Fetched 0 B in 0s (0 B/s)                                                                                                                                                         
+fetch.run() result: 0
+blacklist: []
+whitelist: []
+No packages found that can be upgraded unattended and no pending auto-removals
