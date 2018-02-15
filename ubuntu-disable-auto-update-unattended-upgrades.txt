@@ -9,6 +9,8 @@ disable lines with // if you do not want to autoupdate related APT sources.
 Diğer bir yöntem ise 
 Another way
 
+sudo vi /etc/apt/apt.conf.d/10periodic
+
 APT::Periodoic::Update-Package-Lists "1"; --> APT::Periodic::Update-Package-Lists "0";
 
 Elle test etmek istersek
