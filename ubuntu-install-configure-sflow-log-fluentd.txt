@@ -1,0 +1,6 @@
+
+NTP Should be configured
+
+Configure file descriptor like 65535
+
+
