@@ -1,0 +1,26 @@
+
+to set: 
+
+[root@vdrkistnode01:~] esxcli storage vmfs reclaim config set -p high -l nct
+
+to get:
+[root@vdrkistnode01:~] esxcli storage vmfs reclaim config get -l nct
+   Reclaim Granularity: 1048576 Bytes
+   Reclaim Priority: high
+
+to execute unmap manually :
+-l --> set the volume name
+
+esxcli storage vmfs unmap -l NoCompressionThinVolume
+
+
+Logs : 
+
+[root@vdrkistnode01:~] tail -f /var/log/hostd.log 
+2018-03-05T15:19:59.242Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+2018-03-05T15:19:59.395Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+2018-03-05T15:19:59.575Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+2018-03-05T15:19:59.780Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+2018-03-05T15:19:59.961Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+2018-03-05T15:20:00.113Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+2018-03-05T15:20:00.283Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c

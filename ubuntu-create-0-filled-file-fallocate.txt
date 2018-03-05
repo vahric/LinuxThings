@@ -1,0 +1,5 @@
+# its all filled with 0 
+# if you are testing esxi and storage which have zero dedaction then you will see nothing on storge and esx
+# Also be careful if compression is enabled too  
+
+fallocate -l 10G 10.img

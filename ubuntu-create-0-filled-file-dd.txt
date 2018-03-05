@@ -1,0 +1,22 @@
+# its all filled with 0
+# if you are testing esxi and storage which have zero dedaction then you will see nothing on storge and esx
+# Also be careful if compression is enabled too 
+
+#dd call Sparse file
+
+# 1GB filled with 0
+# seek * bs = 1G sparese before write 1 byte
+dd if=/dev/zero of=1g.img bs=1 count=0 seek=1G
+
+# 1024 * 100 * 1024 = 104,857,600 byte --> 100MB File
+dd if=/dev/zero of=test.img bs=1024 count=0 seek=$[1024*100]
+
+# 1000 * 1000 * 10 * 1000 = 10000000000 byte -->  10 GB File
+dd if=/dev/zero of=10g.img bs=1000 count=0 seek=$[1000*1000*10]
+
+
+# File and result
+# -rw-rw-r-- 1 noroot noroot 1073741824 Mar  2 16:24 1GB.bin
+dd if=/dev/urandom of=1GB.bin bs=64M count=16 iflag=fullblock
+
+dd if=/dev/zero of=first1.img.2 bs=1 count=10000000000
