@@ -1,0 +1,8 @@
+# File and result
+# 64Megabyte'lık dosya oluşturmak için
+# -rw-rw-r-- 1 noroot noroot 1073741824 Mar  2 16:24 1GB.bin
+dd if=/dev/urandom of=1GB.bin bs=64M count=16 iflag=fullblock
+
+# Byte byte yazmak için ...
+# Time consumed thing no need to run this use the command above to create big file its working and tested with v7000Gen2+
+dd if=/dev/zero of=first1.img.2 bs=1 count=10000000000

@@ -24,3 +24,55 @@ Logs :
 2018-03-05T15:19:59.961Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
 2018-03-05T15:20:00.113Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
 2018-03-05T15:20:00.283Z info hostd[D1C2B70] [Originator@6876 sub=Libs opID=esxcli-f9-8b8c user=root] Unmap: Async Unmapped 200 blocks from volume 5a9d5988-909b04ba-2013-2c768a4f531c
+
+esxtop : 
+DELETE show us unmap request ...
+
+ 3:25:22pm up 31 days 21:41, 541 worlds, 1 VMs, 2 vCPUs; CPU load average: 0.01, 0.02, 0.03
+
+DAVG/cmd KAVG/cmd GAVG/cmd QAVG/cmd CLONE_RD CLONE_WR  CLONE_F MBC_RD/s MBC_WR/s      ATS ATSF     ZERO   ZERO_F MBZERO/s   DELETE DELETE_F  MBDEL/s 
+    0.00     0.00     0.00     0.00        0        0        0     0.00     0.00        0    0        0        0     0.00        0        0     0.00 
+    1.14     0.01     1.15     0.00        0        0        0     0.00     0.00   358838 5591   120793        0     0.00     9435        0     0.00 
+    0.00     0.00     0.00     0.00        0        0        0     0.00     0.00    12245 1979   204811        0     0.00     6672        0     0.00 
+    0.00     0.00     0.00     0.00        0        0        0     0.00     0.00     2024  210     6711        0     0.00     1067        0     0.00 
+    0.00     0.00     0.00     0.00        0        0        0     0.00     0.00        0    0        0        0     0.00        0        0     0.00 
+
+
+Is automatic UNMAP activated ? 
+
+root@vdrkistnode01:~] esxcli system settings advanced list --option /VMFS3/EnableVMFS6Unmap
+   Path: /VMFS3/EnableVMFS6Unmap
+   Type: integer
+   Int Value: 1
+   Default Int Value: 1
+   Min Value: 0
+   Max Value: 1
+   String Value: 
+   Default String Value: 
+   Valid Characters: 
+   Description: Enable VMFS6 unmap feature
+
+vsish :
+
+[root@vdrkistnode01:~] vsish 
+/> get /vmkModules/vmfs3/auto_unmap/volumes/nct/properties
+Volume specific unmap information {
+   Volume Name                 :nct
+   FS Major Version            :24
+   Metadata Alignment          :4096
+   Allocation Unit/Blocksize   :1048576
+   Unmap granularity in File   :1048576
+   Volume: Unmap IOs           :84
+   Volume: Unmapped blocks     :5309
+   Volume: Num wait cycles     :0
+   Volume: Num from scanning   :20
+   Volume: Num from heap pool  :3
+   Volume: Total num cycles    :192
+}
+/> 
+
+
+Links: 
+
+https://www.virtuallyghetto.com/2010/08/what-is-vmware-vsish.html
+https://storagehub.vmware.com/t/vsphere-storage/vsphere-6-5-storage/
