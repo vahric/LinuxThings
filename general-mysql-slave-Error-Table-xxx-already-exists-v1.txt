@@ -1,0 +1,41 @@
+Probably you are not replicating all databases and trying to execute sql statment on not exisiting database
+
+Check Replicate_Ignore_DBs
+
+to configure edit active my.cnf file like below under [mysqld] section
+
+replicate-ignore-db = xyzdb
+
+then stop slave and restart mysql
+
+to do this live (with dynamic variable)
+MariaDB 5.5 de ...
+STOP SLAVE;
+SET GLOBAL replicate_do_db = "mydb1,mydb2";
+SET GLOBAL replicate_wild_ignore_table = "mydb1.local_%";
+START SLAVE;
+
+Different between dynamic variable and configuration file is 
+
+SET GLOBAL replicate_do_db='database1,database2';
+
+[mysqld]
+replicate_do_db='database1'
+replicate_do_db='database2'
+
+https://mariadb.com/kb/en/library/dynamic-replication-variables/
+
+Percona
+
+https://www.percona.com/blog/2015/11/04/mysql-5-7-change-replication-filter-online/
+
+When replication is stopped, the slave I/O thread stops reading events from the master binary log and writing them to the relay log, and the SQL thread stops reading events from the relay log and executing them. You can pause the I/O or SQL thread individually by specifying the thread type:
+
+mysql> STOP SLAVE IO_THREAD;
+mysql> STOP SLAVE SQL_THREAD;
+To start execution again, use the START SLAVE statement:
+
+mysql> START SLAVE;
+
+https://dev.mysql.com/doc/refman/5.7/en/replication-administration-pausing.html
+

@@ -1,0 +1,9 @@
+[root@centostest1 ~]# yum list docker
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: ftp.linux.org.tr
+ * extras: ftp.linux.org.tr
+ * updates: mirror.teknoboss.com.tr
+Available Packages
+docker.x86_64                                2:1.13.1-53.git774336d.el7.centos                                extras
+

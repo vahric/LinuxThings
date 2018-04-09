@@ -1,0 +1,11 @@
+ls /sys/class/scsi_host
+echo "- - -" > /sys/class/scsi_host/host0/scan 
+echo "- - -" > /sys/class/scsi_host/host1/scan 
+echo "- - -" > /sys/class/scsi_host/host2/scan 
+fdisk -l
+fdisk /dev/sdc 
+mkfs.xfs /dev/sdc1
+mkdir /mnt/data2
+mount /dev/sdc1 /mnt/data2/
+vi /etc/fstab
+/dev/sdc1       /mnt/data2      xfs    defaults        0       0

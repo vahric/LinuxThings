@@ -1,0 +1,41 @@
+new package name is docker-ce
+
+When you list docker package, you will see that its old
+docker.x86_64                                2:1.13.1-53.git774336d.el7.centos                                extras
+
+lvm2 should be installed , actually for centos7 its already installed bu to install it 
+yum install lvm2
+
+Yum utils, good for add repo or other functions easyly
+yun install yum-utils
+
+Again its already installed but need to have device-mapper-persistent-data package for 
+yum install device-mapper-persistent-data
+
+All distro repo files ...
+https://download.docker.com/linux/
+
+Add related repo ..
+yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+Not: docker-ce-stable is enabled default if you want to allow edge you can execue yum-config-manager --enable docker-ce-edge
+
+yum install docker-ce
+
+To install different versions ...
+yum install docker-ce-<version>
+
+Enable Docker Service
+systemctl enable docker
+
+Start Docker Service
+systemctl start docker
+
+To docker remove
+yum remove docker-ce
+To delete all images,containers,volumes
+rm -rf /var/lib/docker
+
+Links
+
+About Yum https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-managing_yum_repositories
+About Docker Install https://docs.docker.com/install/linux/docker-ce/centos/

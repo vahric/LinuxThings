@@ -1,0 +1,25 @@
+Select the HA cluster.
+On the Summary tab, click Edit Settings.
+In the Settings dialog, select VMware HA.
+Click Advanced Options.
+In the Advanced Options (HA) dialog, enter the option name and the corresponding value: 
+
+Option: das.isolationaddress0
+Value: A valid IP address other than the default gateway address 
+
+Similarly, you can set more isolation response addresses using das.isolationaddress1 through das.isolationaddress9. 
+
+In the Advanced Options (HA) dialog box, set this option:
+Option: das.usedefaultisolationaddress
+Value: false 
+
+Notes:
+You must set this option if you are setting multiple isolation response addresses. 
+Additionally you should configure das.usedefaultisolationaddress to false when the default gateway is a device which cannot be pinged.
+
+Click OK.
+Click OK.
+Edit settings for the cluster again.
+Disable HA and click OK.
+Edit settings again.
+Enable HA and click OK.

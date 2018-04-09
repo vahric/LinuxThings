@@ -1,0 +1,7 @@
+root@bigdata16:/home/bigdata16# ls /sys/class/scsi_host
+host0  host1  host2
+
+
+root@bigdata16:/home/bigdata16# echo "- - -" > /sys/class/scsi_host/host0/scan 
+root@bigdata16:/home/bigdata16# echo "- - -" > /sys/class/scsi_host/host1/scan 
+root@bigdata16:/home/bigdata16# echo "- - -" > /sys/class/scsi_host/host2/scan 

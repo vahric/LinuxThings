@@ -1,0 +1,13 @@
+
+
+On Slave execute 
+
+SHOW SLAVE STATUS\G
+
+Check how much behind of master  ?
+
+Seconds_Behind_Master: 0
+
+Links
+
+https://dev.mysql.com/doc/refman/5.7/en/replication-administration-status.html
