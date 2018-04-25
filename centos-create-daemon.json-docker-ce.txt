@@ -1,0 +1,25 @@
+cd /etc/docker/
+vi daemon.json
+
+add lines below 
+
+{
+"storage-driver": "devicemapper"
+}
+
+or
+
+root@centostest1 docker]# cat <<EOF > daemon.json 
+> {
+> "storage-driver": "devicemapper"
+> }
+> EOF
+
+systemctl stop docker
+systemctl start docker
+
+After apply this config all docker images or containers will gone !
+
+Links:
+
+https://docs.docker.com/engine/reference/commandline/dockerd/#run-multiple-daemons

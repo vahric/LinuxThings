@@ -1,0 +1,16 @@
+A
+
+aufs : multi-layered unification filesystem
+
+An union filesystem takes an existing filesystem and transparently overlays it on a newer filesystem. It allows files and directories of separate filesystem to co-exist under a single roof. AuFS can merge several directories and provide a single merged view of it
+
+Kernel version 3 support aufs
+
+Link : https://www.thegeekstuff.com/2013/05/linux-aufs/
+
+O
+
+OverlayFs : Smillar aufs but faster and simple then. 
+
+Advised to use Overlay2
+Overlay2 is more efficient becuause of inode utilization, required version 4.0 higer of linux kernel

@@ -1,0 +1,94 @@
+Expect you have two servers
+
+Host1: centostest1
+Host2: centostest2
+
+Update /etc/hosts file like below
+
+10.111.60.70	centostest1
+10.111.60.71	cebtostest2
+
+Export as a variable
+
+export centostest1=10.111.60.70
+export centostest2=10.111.60.71
+
+Download etcd
+
+curl -L -O https://github.com/coreos/etcd/releases/download/v3.2.18/etcd-v3.2.18-linux-amd64.tar.gz
+
+User and group creation
+
+useradd -U -d /var/lib/etcd -m -c "etcd user" -s /sbin/nologin etcd
+
+Unzip tar file
+
+tar -zxvf etcd-v3.2.18-linux-amd64.tar.gz
+cd etcd-v3.2.18-linux-amd64
+
+#You will see the etcd and etcdctl file
+
+Copy related files to related folders
+
+cp etcd etcdctl /usr/local/bin/
+
+(optional if you will create config file )
+mkdir -p /etc/etcd/
+touch /etc/etcd/etcd.conf
+chown -R etcd:etcd /etc/etcd
+cd
+
+Start etcd on centostest1 (be carefull name and ip address)
+
+[root@centostest1 ~]# etcd --name server1 --initial-advertise-peer-urls http://10.111.60.70:2380 \
+> --listen-peer-urls http://10.111.60.70:2380 \
+> --listen-client-urls http://10.111.60.70:2379,http://127.0.0.1:2379 \
+> --advertise-client-urls http://10.111.60.70:2379 \
+> --initial-cluster-token etcd-cluster-1 \
+> --initial-cluster server1=http://10.111.60.70:2380,server2=http://10.111.60.71:2380 \
+> --initial-cluster-state new & \
+
+Start etcd on centostest2
+
+[root@centostest2 ~]# etcd --name server2 --initial-advertise-peer-urls http://10.111.60.71:2380 \
+> --listen-peer-urls http://10.111.60.71:2380 \
+> --listen-client-urls http://10.111.60.71:2379,http://127.0.0.1:2379 \
+> --advertise-client-urls http://10.111.60.71:2379 \
+> --initial-cluster-token etcd-cluster-1 \
+> --initial-cluster server1=http://10.111.60.70:2380,server2=http://10.111.60.71:2380 \
+> --initial-cluster-state new & \
+
+Check etcd cluster memebers
+
+[root@centostest1 ~]# etcdctl member list
+429446a33028ce30: name=server1 peerURLs=http://10.111.60.70:2380 clientURLs=http://10.111.60.70:2379 isLeader=false
+b3cc9cf2d51b90e1: name=server2 peerURLs=http://10.111.60.71:2380 clientURLs=http://10.111.60.71:2379 isLeader=true
+
+Check etcd cluster health
+
+[root@centostest1 ~]# etcdctl cluster-health
+member 429446a33028ce30 is healthy: got healthy result from http://10.111.60.70:2379
+member b3cc9cf2d51b90e1 is healthy: got healthy result from http://10.111.60.71:2379
+cluster is healthy
+
+Troubleshoot
+
+Update member inital variables : etcdctl member update <cluster_member_id_get_with_etcdctl member list> http://...:2380
+
+Default data-path
+
+[root@centostest1 ~]# pwd
+/root
+drwx------.  3 root   root        20 Apr 18 17:41 server1.etcd
+
+Set debug mode when system is running
+
+Enable Debug
+curl http://127.0.0.1:2379/config/local/log -XPUT -d '{"Level":"DEBUG"}'
+Enable Debug
+curl http://127.0.0.1:2379/config/local/log -XPUT -d '{"Level":"INFO"}'
+
+Links
+Administration : https://coreos.com/etcd/docs/latest/v2/admin_guide.html
+https://coreos.com/etcd/docs/latest/op-guide/configuration.html
+Clustering : https://coreos.com/etcd/docs/latest/op-guide/clustering.html

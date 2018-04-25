@@ -30,6 +30,10 @@ systemctl enable docker
 Start Docker Service
 systemctl start docker
 
+Test Docker
+
+sudo docker run hello-world
+
 To docker remove
 yum remove docker-ce
 To delete all images,containers,volumes
