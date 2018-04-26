@@ -16,7 +16,7 @@ pvcreate /dev/sdb
 vgcreate volumgroup1 /dev/sdb
 * volumgroup1 is name you can define anything....
 
-or one shot 
+or oneshot ..
 
 [root@centostest2 ~]# vgcreate vg2 /dev/sdc
   Physical volume "/dev/sdc" successfully created.
