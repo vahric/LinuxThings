@@ -23,7 +23,9 @@ or oneshot ..
   Volume group "vg2" successfully created
 
 
-Now create a logical volume thin and 10G. ThinVolumeOnvg2 is thin pool name ...
+Now create a thin pool and size of it 10G. ThinVolumeOnvg2 is thin pool name ...
+-L indicate size of
+-T pointing Thin pool name
 
 [root@centostest2 ~]# lvcreate -L 10G -T vg2/ThinVolumeOnvg2
   Using default stripesize 64.00 KiB.
