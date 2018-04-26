@@ -1,0 +1,99 @@
+
+LVM
+
+Manage disk space plus can take snapshot and create thinly provisioned logical volumes.
+
+To Create Thin Volume
+
+1) Create thin pool
+2) Create logical thin volume
+
+Create Physical and Volume Group like before
+
+My disk : /dev/sdb
+
+pvcreate /dev/sdb
+vgcreate volumgroup1 /dev/sdb
+* volumgroup1 is name you can define anything....
+
+or one shot 
+
+[root@centostest2 ~]# vgcreate vg2 /dev/sdc
+  Physical volume "/dev/sdc" successfully created.
+  Volume group "vg2" successfully created
+
+
+Now create a logical volume thin and 10G. ThinVolumeOnvg2 is thin pool name ...
+
+[root@centostest2 ~]# lvcreate -L 10G -T vg2/ThinVolumeOnvg2
+  Using default stripesize 64.00 KiB.
+  Thin pool volume with chunk size 64.00 KiB can address at most 15.81 TiB of data.
+  Logical volume "ThinVolumeOnvg2" created.
+
+Check the situation ...
+
+[root@centostest2 ~]# lvs
+  LV              VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home            centos -wi-ao---- <45.12g                                                    
+  root            centos -wi-ao----  50.00g                                                    
+  swap            centos -wi-ao----  <3.88g                                                    
+  ThinVolumeOnvg2 vg2    twi-a-tz--  10.00g             0.00   0.62
+
+Create two 30G logical volume on thin pool, which we are overloading 
+-V is virtual size
+-T pointing Thin pool name
+-n is name of logical volume
+
+[root@centostest2 ~]# lvcreate -V 30G -T vg2/ThinVolumeOnvg2 -n Disk1
+  Using default stripesize 64.00 KiB.
+  WARNING: Sum of all thin volume sizes (30.00 GiB) exceeds the size of thin pool vg2/ThinVolumeOnvg2 and the amount of free space in volume group (29.97 GiB)!
+  For thin pool auto extension activation/thin_pool_autoextend_threshold should be below 100.
+  Logical volume "Disk1" created.
+[root@centostest2 ~]# lvcreate -V 30G -T vg2/ThinVolumeOnvg2 -n Disk2
+  Using default stripesize 64.00 KiB.
+  WARNING: Sum of all thin volume sizes (60.00 GiB) exceeds the size of thin pool vg2/ThinVolumeOnvg2 and the size of whole volume group (<40.00 GiB)!
+  For thin pool auto extension activation/thin_pool_autoextend_threshold should be below 100.
+  Logical volume "Disk2" created.
+
+Check again ...
+
+[root@centostest2 ~]# lvs
+  LV              VG     Attr       LSize   Pool            Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home            centos -wi-ao---- <45.12g                                                               
+  root            centos -wi-ao----  50.00g                                                               
+  swap            centos -wi-ao----  <3.88g                                                               
+  Disk1           vg2    Vwi-a-tz--  30.00g ThinVolumeOnvg2        0.00                                   
+  Disk2           vg2    Vwi-a-tz--  30.00g ThinVolumeOnvg2        0.00                                   
+  ThinVolumeOnvg2 vg2    twi-aotz--  10.00g                        0.00   0.68
+
+Then start partition and format the drives 
+
+mkfs.ext4 /dev/vg2/Disk1
+mkfs.ext4 /dev/vg2/Disk2
+
+mkdir /mnt/disk1
+mkdir /mnt/disk2
+
+mount /dev/vg2/Disk1 /mnt/disk1
+mount /dev/vg2/Disk2 /mnt/disk2
+
+dd if=/dev/zero of=/mnt/disk1/file.txt bs=1M count=1024
+dd if=/dev/zero of=/mnt/disk2/file.txt bs=1M count=1024
+
+Look, what happened .. We can see that some percentage of data already used for thin volumes and you can see meta usages ...
+
+[root@centostest2 ~]# lvs
+  LV              VG     Attr       LSize   Pool            Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home            centos -wi-ao---- <45.12g                                                               
+  root            centos -wi-ao----  50.00g                                                               
+  swap            centos -wi-ao----  <3.88g                                                               
+  Disk1           vg2    Vwi-aotz--  30.00g ThinVolumeOnvg2        5.33                                   
+  Disk2           vg2    Vwi-aotz--  30.00g ThinVolumeOnvg2        5.26                                   
+  ThinVolumeOnvg2 vg2    twi-aotz--  10.00g                        31.78  14.03
+
+Links:
+
+https://www.linuxtechi.com/thin-provisioned-logical-volumes-centos-7-rhel-7/
+
+Help : lvs -o help
+Help: https://www.systutorials.com/docs/linux/man/8-lvs/ --> The lv_attr bits are: 

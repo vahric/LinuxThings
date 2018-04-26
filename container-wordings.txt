@@ -8,9 +8,19 @@ Kernel version 3 support aufs
 
 Link : https://www.thegeekstuff.com/2013/05/linux-aufs/
 
+
+
+
 O
 
 OverlayFs : Smillar aufs but faster and simple then. 
 
 Advised to use Overlay2
 Overlay2 is more efficient becuause of inode utilization, required version 4.0 higer of linux kernel
+
+
+R
+
+race condition : 
+
+A race condition is an undesirable situation that occurs when a device or system attempts to perform two or more operations at the same time, but because of the nature of the device or system, the operations must be done in the proper sequence in order to be done correctly.
