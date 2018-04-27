@@ -25,6 +25,173 @@ Storage Driver: devicemapper
  Deferred Deleted Device Count: 0
  Library Version: 1.02.140-RHEL7 (2017-05-03)
 
+direct-lvm
+
+Device ... /dev/sdb
+
+Config parameter ...
+
+{
+  "storage-driver": "devicemapper",
+  "storage-opts": "dm.directlvm_device=/dev/sdb"
+}
+
+From Docker guids ...
+**I used this one ...
+{
+  "storage-driver": "devicemapper",
+  "storage-opts": [
+    "dm.directlvm_device=/dev/sdb",
+    "dm.thinp_percent=95",
+    "dm.thinp_metapercent=1",
+    "dm.thinp_autoextend_threshold=80",
+    "dm.thinp_autoextend_percent=20",
+    "dm.directlvm_device_force=false"
+  ]
+}
+
+Before 
+
+[root@centostest1 ~]# lvs
+  LV   VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home centos -wi-ao---- <45.12g                                                    
+  root centos -wi-ao----  50.00g                                                    
+  swap centos -wi-ao----  <3.88g
+
+
+After add config to daemon.json and restart docker daemon
+its automaticly configured ..
+
+[root@centostest1 ~]# lvs
+  LV       VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home     centos -wi-ao---- <45.12g                                                    
+  root     centos -wi-ao----  50.00g                                                    
+  swap     centos -wi-ao----  <3.88g                                                    
+  thinpool docker twi-a-t--- <66.50g             0.03   0.02
+
+Now add centos image,run docker container via it and see what will happen 
+
+[root@centostest1 ~]# lsblk 
+NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+fd0                       2:0    1    4K  0 disk 
+sda                       8:0    0  100G  0 disk 
+├─sda1                    8:1    0    1G  0 part /boot
+└─sda2                    8:2    0   99G  0 part 
+  ├─centos-root         253:0    0   50G  0 lvm  /
+  ├─centos-swap         253:1    0  3.9G  0 lvm  [SWAP]
+  └─centos-home         253:2    0 45.1G  0 lvm  /home
+sdb                       8:16   0   70G  0 disk 
+├─docker-thinpool_tmeta 253:3    0  716M  0 lvm  
+│ └─docker-thinpool     253:5    0 66.5G  0 lvm  
+│   └─docker-253:0-100680072-aee23fa711bda1309b6cfdab564d0fdcaf79fe019f36bf88cca4e52fa2b8eb6a
+                        253:6    0   10G  0 dm   /var/lib/docker/devicemapper/mnt/aee23fa711bda1309b6cfdab564d0fdcaf79fe019f36bf88cca4e52
+└─docker-thinpool_tdata 253:4    0 66.5G  0 lvm  
+  └─docker-thinpool     253:5    0 66.5G  0 lvm  
+    └─docker-253:0-100680072-aee23fa711bda1309b6cfdab564d0fdcaf79fe019f36bf88cca4e52fa2b8eb6a
+                        253:6    0   10G  0 dm   /var/lib/docker/devicemapper/mnt/aee23fa711bda1309b6cfdab564d0fdcaf79fe019f36bf88cca4e52
+sr0                      11:0    1  4.2G  0 rom
+
+docker info out ...
+
+Storage Driver: devicemapper
+ Pool Name: docker-thinpool
+ Pool Blocksize: 524.3kB
+ Base Device Size: 10.74GB
+ Backing Filesystem: xfs
+ Udev Sync Supported: true
+ Data Space Used: 271.6MB
+ Data Space Total: 71.4GB
+ Data Space Available: 71.13GB
+ Metadata Space Used: 163.8kB
+ Metadata Space Total: 750.8MB
+ Metadata Space Available: 750.6MB
+ Thin Pool Minimum Free Space: 7.14GB
+ Deferred Removal Enabled: true
+ Deferred Deletion Enabled: true
+ Deferred Deleted Device Count: 0
+ Library Version: 1.02.140-RHEL7 (2017-05-03)
+
+Important Place is /var/lib/docker/devicemapper/
+
+metadata : image ve container'ların layer metadata bilgisini
+mnt : mount point'leri
+
+
+Run Docker Container
+
+docker run -itd centos /bin/bash
+
+Check devicemapper
+
+[root@centostest1 metadata]# mount |grep devicemapper
+/dev/mapper/docker-253:0-33601688-d1c3b9c54398dbd57e8a1f745c708c12a4db22e9b5bb1db8e843977b20bdc267 on /var/lib/docker/devicemapper/mnt/d1c3b9c54398dbd57e8a1f745c708c12a4db22e9b5bb1db8e843977b20bdc267 type xfs (rw,relatime,seclabel,nouuid,attr2,inode64,sunit=1024,swidth=1024,noquota)
+
+Check mnt folder ...
+
+[root@centostest1 devicemapper]# cd mnt/
+[root@centostest1 mnt]# ls -al
+total 0
+drwxr-xr-x. 3 root root 78 Apr 27 18:26 .
+drwx------. 4 root root 58 Apr 27 18:12 ..
+drwxr-xr-x. 3 root root 30 Apr 27 18:25 d1c3b9c54398dbd57e8a1f745c708c12a4db22e9b5bb1db8e843977b20bdc267
+[root@centostest1 mnt]# cd d1c3b9c54398dbd57e8a1f745c708c12a4db22e9b5bb1db8e843977b20bdc267/
+[root@centostest1 d1c3b9c54398dbd57e8a1f745c708c12a4db22e9b5bb1db8e843977b20bdc267]# ls -al
+total 8
+drwxr-xr-x.  3 root root   30 Apr 27 18:25 .
+drwxr-xr-x.  3 root root   78 Apr 27 18:26 ..
+-rw-------.  1 root root   64 Apr 27 18:25 id
+drwxr-xr-x. 16 root root 4096 Apr 27 18:26 rootfs
+[root@centostest1 d1c3b9c54398dbd57e8a1f745c708c12a4db22e9b5bb1db8e843977b20bdc267]# cd rootfs/
+[root@centostest1 rootfs]# ls -al
+total 40
+drwxr-xr-x. 16 root root  4096 Apr 27 18:26 .
+drwxr-xr-x.  3 root root    30 Apr 27 18:25 ..
+-rw-r--r--.  1 root root 11976 Apr  2 21:39 anaconda-post.log
+lrwxrwxrwx.  1 root root     7 Apr  2 21:38 bin -> usr/bin
+drwxr-xr-x.  4 root root    43 Apr 27 18:26 dev
+-rwxr-xr-x.  1 root root     0 Apr 27 18:26 .dockerenv
+drwxr-xr-x. 47 root root  4096 Apr 27 18:26 etc
+drwxr-xr-x.  2 root root     6 Nov  5  2016 home
+lrwxrwxrwx.  1 root root     7 Apr  2 21:38 lib -> usr/lib
+lrwxrwxrwx.  1 root root     9 Apr  2 21:38 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root     6 Nov  5  2016 media
+drwxr-xr-x.  2 root root     6 Nov  5  2016 mnt
+drwxr-xr-x.  2 root root     6 Nov  5  2016 opt
+drwxr-xr-x.  2 root root     6 Apr  2 21:38 proc
+dr-xr-x---.  2 root root  4096 Apr  2 21:39 root
+drwxr-xr-x. 10 root root  4096 Apr  2 21:39 run
+lrwxrwxrwx.  1 root root     8 Apr  2 21:38 sbin -> usr/sbin
+drwxr-xr-x.  2 root root     6 Nov  5  2016 srv
+drwxr-xr-x.  2 root root     6 Apr  2 21:38 sys
+drwxrwxrwt.  7 root root  4096 Apr  2 21:39 tmp
+drwxr-xr-x. 13 root root  4096 Apr  2 21:38 usr
+drwxr-xr-x. 18 root root  4096 Apr  2 21:38 var
+
+
+
+Additionally
+
+LVM have profiles
+Profiles under /etc/lvm/profile/
+You can configure autoextend precent and thresold
+
+activation {
+  thin_pool_autoextend_threshold=80
+  thin_pool_autoextend_percent=20
+}
+
+
+Apply lvm Profile Changes ...
+
+lvchange --metadataprofile <profile-name(file-name)> <volumegrp>/<thinlvname>
+
+
+To activate autoextend need to activate Monitor
+
+lvs -o+seg_monitor
+
+To activate device mapper after reboot
+lvchange -ay docker/thinpool
 
 Links:
 https://docs.docker.com/storage/storagedriver/device-mapper-driver/

@@ -41,6 +41,22 @@ Check the situation ...
   swap            centos -wi-ao----  <3.88g                                                    
   ThinVolumeOnvg2 vg2    twi-a-tz--  10.00g             0.00   0.62
 
+Another way of it; 
+
+First create logical volume as usal like below 
+Usually people creating data and metadata seperated
+Then convert it to Thin Pool
+--wipesignatures 
+-l you can provide % instead of exact size
+-n name
+
+lvcreate --wipesignatures y -n thinpoolname <volume_group_name> -l 95%VG
+lvcreate --wipesignatures y -n thinpoolmetaname <volume_group_name> -l 1%VG
+
+lvconvert -y --zero n -c 512K --thinpool <thinpoolname> --poolmetadata <thinpoolmetadataname>
+-c chunk size
+--zero
+
 Create two 30G logical volume on thin pool, which we are overloading 
 -V is virtual size
 -T pointing Thin pool name
