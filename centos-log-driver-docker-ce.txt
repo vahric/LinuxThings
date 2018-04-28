@@ -1,0 +1,83 @@
+Docker support multiple log drivers
+Logs are very important to see whats happening
+Handling single docker container logs should be easy but for multiple containers its hard to manage
+
+You can see the each container logs with command bellow
+
+docker logs <container_name/id>
+
+[root@centostest1 ~]# docker logs e6
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Sat Apr 28 12:24:04.259430 2018] [mpm_event:notice] [pid 1:tid 139740546606976] AH00489: Apache/2.4.33 (Unix) configured -- resuming normal operations
+[Sat Apr 28 12:24:04.261930 2018] [core:notice] [pid 1:tid 139740546606976] AH00094: Command line: 'httpd -D FOREGROUND'
+
+**For services run docker service logs
+
+Default docker user json-file log driver , other closer one is journald and only this two support docker logs command
+
+But mostly you would like to get out logs to syslog or others like aws , fluentd , logstash all these are supported with two options
+
+Option 1
+Use daemon.json to configure globally 
+
+First check already running config 
+
+[root@centostest1 ~]# docker info | grep "Logging Driver"
+Logging Driver: json-file
+
+and modify Logging Driver
+
+{
+  "storage-driver": "devicemapper",
+  "storage-opts": [
+    "dm.directlvm_device=/dev/sdb",
+    "dm.thinp_percent=95",
+    "dm.thinp_metapercent=1",
+    "dm.thinp_autoextend_threshold=80",
+    "dm.thinp_autoextend_percent=20",
+    "dm.directlvm_device_force=false"
+  ],
+  "log-driver":"syslog"
+}
+
+
+[root@centostest1 ~]# docker info | grep "Logging Driver"
+Logging Driver: syslog
+
+Actually you can configure more like set syslog server and port bla bla 
+
+{
+  "log-driver": "syslog",
+  "log-opts": {
+    "syslog-address": "udp://1.2.3.4:1111"
+  }
+}
+
+
+Option 2
+
+More quick and special thing you need then go and give a parameters on command prompt when run docker container
+
+Example
+
+docker run -–log-driver syslog –-log-opt syslog-address=udp://1.2.3.4:1111 alpine echo hello world
+
+Specific Driver Examples 
+
+Syslog : https://docs.docker.com/config/containers/logging/syslog/
+Json: https://docs.docker.com/config/containers/logging/json-file/#options
+Fluentd : https://docs.docker.com/config/containers/logging/fluentd/
+AWS : https://docs.docker.com/v17.09/engine/admin/logging/awslogs/
+
+Links: 
+
+https://docs.docker.com/config/containers/logging/configure/
+
+Test Utility : 
+
+elinks
+
+Remote Syslog : 
+
+rsyslog
