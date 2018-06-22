@@ -1,0 +1,29 @@
+To stop 
+
+systemctl stop firewalld
+
+To Disable
+
+[root@cassandra1 ~]# systemctl disable firewalld
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+[root@cassandra1 ~]# systemctl status firewalld
+
+Get status
+
+[root@cassandra1 ~]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+     Docs: man:firewalld(1)
+
+May 16 09:30:18 cassandra1 firewalld[810]: WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
+May 16 09:30:18 cassandra1 firewalld[810]: WARNING: ICMP type 'failed-policy' is not supported by the kernel for ipv6.
+May 16 09:30:18 cassandra1 firewalld[810]: WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
+May 16 09:30:18 cassandra1 firewalld[810]: WARNING: ICMP type 'reject-route' is not supported by the kernel for ipv6.
+May 16 09:30:18 cassandra1 firewalld[810]: WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
+May 16 15:15:36 cassandra1 systemd[1]: Stopping firewalld - dynamic firewall daemon...
+May 16 15:15:37 cassandra1 systemd[1]: Starting firewalld - dynamic firewall daemon...
+May 16 15:15:37 cassandra1 systemd[1]: Started firewalld - dynamic firewall daemon.
+May 17 23:22:28 cassandra1 systemd[1]: Stopping firewalld - dynamic firewall daemon...
+May 17 23:22:28 cassandra1 systemd[1]: Stopped firewalld - dynamic firewall daemon.

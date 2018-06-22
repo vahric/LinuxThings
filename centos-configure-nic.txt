@@ -1,0 +1,17 @@
+
+Add network card from vmware , hyper-v or via any 
+
+Execute command below to activate new card ..
+ 
+nmtui
+
+Then Edit Connections tab, go to on new cards it should be like Wired Connetion1 or something
+
+Edit on it
+
+ignore ipv6
+configıre ipv4
+
+Then activate connection if needed
+
+then test it 

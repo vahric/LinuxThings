@@ -1,0 +1,29 @@
+Now export cert private key and certificate from pfx file
+
+using with without -nodes and with -nodes parameter 
+-nodes means NO DES, it will out private key without encription
+
+
+Vahrics-MacBook-Pro:a vahricmuhtaryan$ openssl pkcs12 -in wild.dorukcloudcom.pfx -out certificate.cer
+Enter Import Password:
+MAC verified OK
+Enter PEM pass phrase:
+
+
+Vahrics-MacBook-Pro:a vahricmuhtaryan$ openssl pkcs12 -in wild.dorukcloudcom.pfx -out certificate.cer -nodes
+Enter Import Password:
+MAC verified OK
+
+You can see the private key between -----BEGIN PRIVATE KEY----- and -----END PRIVATE KEY-----
+
+This is recreate pfx file again with alias for vcloud director http and proxy 
+
+pkcs12 -export -in <cer_file> -inkey <key_file> -name http –passout pass:password -out http.pfx
+
+if you do not need pass for keep secure pfx go like below 
+
+pkcs12 -export -in <cer_file> -inkey <key_file> -name http -out http.pfx
+pkcs12 -export -in <cer_file> -inkey <key_file> -name consoleproxy -out console.pfx
+
+
+
