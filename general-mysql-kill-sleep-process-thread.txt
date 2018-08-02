@@ -1,0 +1,20 @@
+To kill all Sleeps :D 
+
+mysql -u<Username> -p<password> -e "show processlist;" | grep Sleep | awk '{print $1}' | while read LINE; do mysql -u<Username> -p<password> -e "kill $LINE"; done 
+
+Not : Sometime because special characters you need to set pass inside ' ' 
+
+Also configure your my.cnf and via cli to reduce or kill Sleeps quick as possible
+
+[mysqld]
+interactive_timeout=180
+wait_timeout=180
+
+
+cli>
+SET interactive_timeout = 180;
+SET wait_timeout = 180;
+
+Links:
+
+https://dev.mysql.com/doc/refman/8.0/en/kill.html

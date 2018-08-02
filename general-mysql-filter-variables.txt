@@ -1,0 +1,5 @@
+
+To search variable use '%word_you_would_like_to_search%'
+
+SHOW VARIABLES LIKE '%size%';
+SHOW GLOBAL VARIABLES LIKE '%size%';

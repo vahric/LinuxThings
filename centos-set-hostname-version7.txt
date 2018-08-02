@@ -1,1 +1,1 @@
-hostnamectl set-name rabbit1
+hostnamectl set-hostname rabbit1

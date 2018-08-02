@@ -1,0 +1,13 @@
+[root@cetechnfs ~]# yum whatprovides netstat
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: ftp.linux.org.tr
+ * extras: centos.turhost.com
+ * updates: ftp.linux.org.tr
+base/7/x86_64/filelists_db                                                                                                       | 6.9 MB  00:00:00     
+extras/7/x86_64/filelists_db                                                                                                     | 524 kB  00:00:00     
+updates/7/x86_64/filelists_db                                                                                                    | 2.1 MB  00:00:00     
+net-tools-2.0-0.22.20131004git.el7.x86_64 : Basic networking tools
+Repo        : @base
+Matched from:
+Filename    : /usr/bin/netstat

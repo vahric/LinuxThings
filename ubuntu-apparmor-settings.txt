@@ -1,0 +1,86 @@
+
+Apparmor is Linux secuirty module to restrics programs.
+its ready to use and come with pre-configured profiles.
+
+To type Profiles, enforce and complain.
+Enforce, audit and restrict the operation
+Complain, audit but kind a monitor only.
+
+Profiles are under /etc/apparmor.d/
+
+To see the status like selinux use aa_status command.
+
+Command out
+
+noroot@BigdataMysqln:~$ sudo aa-status 
+[sudo] password for noroot: 
+apparmor module is loaded.
+15 profiles are loaded.
+15 profiles are in enforce mode.
+   /sbin/dhclient
+   /usr/bin/lxc-start
+   /usr/bin/ubuntu-core-launcher
+   /usr/lib/NetworkManager/nm-dhcp-client.action
+   /usr/lib/NetworkManager/nm-dhcp-helper
+   /usr/lib/connman/scripts/dhclient-script
+   /usr/lib/lxd/lxd-bridge-proxy
+   /usr/lib/snapd/snap-confine
+   /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+   /usr/sbin/mysqld
+   /usr/sbin/tcpdump
+   lxc-container-default
+   lxc-container-default-cgns
+   lxc-container-default-with-mounting
+   lxc-container-default-with-nesting
+0 profiles are in complain mode.
+1 processes have profiles defined.
+1 processes are in enforce mode.
+   /usr/sbin/mysqld (4889) 
+0 processes are in complain mode.
+0 processes are unconfined but have a profile defined.
+
+
+To modify profiles install apparmor-utils
+
+sudo apt-get install apparmor-utils
+
+To change mysql complain mode
+
+sudo aa-complain /usr/sbin/mysqld
+
+Another way you can think that disable apparmor service should be enough for all but its not ! 
+
+/etc/init.d/apparmor stop
+
+The command above only clear profile cache not unload it , extra you should execute command below
+
+/etc/init.d/apparmor teardown
+
+Another way modify some files and reload the service, like 
+
+sudo vi /etc/apparmor.d/local/usr.sbin.mysqld
+
+# Site-specific additions and overrides for usr.sbin.mysqld.
+# For more details, please see /etc/apparmor.d/local/README.
+/path_of_mysql_data/** rwk,
+
+sudo service apparmor reload
+
+
+Error What we got : 
+
+Aug  1 14:58:02 BigdataMysqln mysqld[1326]: mysqld: Can't read dir of '/zxxxx/etc/mysql/mysql.conf.d/' (Errcode: 13 - Permission denied)
+Aug  1 14:58:02 BigdataMysqln mysqld[1326]: mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
+
+Aug  1 16:29:19 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:19.491044Z 0 [ERROR] InnoDB: The innodb_system data file 'ibdata1' must be writable
+Aug  1 16:29:19 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:19.491093Z 0 [ERROR] InnoDB: The innodb_system data file 'ibdata1' must be writable
+Aug  1 16:29:19 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:19.491105Z 0 [ERROR] InnoDB: Plugin initialization aborted with error Generic error
+Aug  1 16:29:20 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:20.091619Z 0 [ERROR] Plugin 'InnoDB' init function returned error.
+Aug  1 16:29:20 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:20.091642Z 0 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+Aug  1 16:29:20 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:20.091652Z 0 [ERROR] Failed to initialize builtin plugins.
+Aug  1 16:29:20 BigdataMysqln mysqld[11378]: 2018-08-01T13:29:20.091659Z 0 [ERROR] Aborting
+
+Links : 
+
+https://www.thegeekstuff.com/2014/03/apparmor-ubuntu/
+https://stackoverflow.com/questions/44573776/mysql-wont-start-anymore
