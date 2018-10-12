@@ -1,0 +1,5 @@
+
+https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-availability-group-configure-rs?view=sql-server-2017
+
+Configure SQL Server on Linux with the mssql-conf tool
+https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-2017
