@@ -1,0 +1,19 @@
+USE LinuxTestAlwaysOnExternalType;
+
+CREATE TABLE Calisanlar (
+    ID int IDENTITY(1,1),
+    Soyadi varchar(255) NOT NULL,
+    Adi varchar(255),
+    Yasi int,
+    CONSTRAINT Tekil_Kisitlamasi UNIQUE (ID,Soyadi),
+    CONSTRAINT PK PRIMARY KEY (ID,Soyadi)
+);
+
+CREATE INDEX index_Calisanlar
+ON Calisanlar (Soyadi, Adi);
+
+INSERT INTO Calisanlar (Adi,Soyadi,Yasi)
+VALUES
+    ('Adi1','Soyadi1',23),
+    ('Adi2','Soyadi2',23),
+    ('Adi3','Soyadi3',23);
