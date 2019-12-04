@@ -1,0 +1,49 @@
+Our environment is VMware and extended already existing disk which is dedicated to root partition.
+
+Not: Better way is add additional disk and extend volume group with this new disk.
+
+1) Extend disk from vSphere,vCenter or vCD
+
+2) Use fdisk to extend related partition for example "fdisk /dev/sda" (or use whats your)
+
+3) Delete existing partition with "d" and recreate with "n" no need to touch anything just "n" and enter,enter,enter and "w" and out to save.
+Not: Don't worry no any data will gone somewhere.
+
+4) Execute "partprobe" to re-read partition tables by system to no need restart vm.
+
+5) pvresize /dev/sda2 (or use whats your)
+
+6) Lets resize logical volume too ! lvresize -l +100%FREE /dev/centos/root
+
+7) Because of Centos 7 use xfs use xfs_growfs to resize file system like xfs_growfs /dev/centos/root
+
+8) Check it via "df -h" or/and "vgdisplay" commands ... 
+
+
+if you will add additiona disks to system
+
+1) Use fdisk to create partition
+
+2) pvcreate /dev/sdex
+
+3) vgdisplay
+
+4) vgextend <volume group name> /dev/sde1
+
+5) pvscan
+
+6) lvdisplay
+
+7a) lvextend -l +100%FREE /dev/vg_metcalf/lv_root
+7b) lvextend /dev/Mega/root /dev/sdb1
+7c) lvextend -L +2G /dev/mapper/vg_cloud-LogVol00
+
+8) resize2fs /dev/<volume group name> /lv_root
+ 
+
+
+Some Links :
+
+https://theducks.org/2009/11/expanding-lvm-partitions-in-vmware-on-the-fly/
+http://ryandoyle.net/posts/expanding-a-lvm-partition-to-fill-remaining-drive-space/
+https://stackoverflow.com/questions/26305376/resize2fs-bad-magic-number-in-super-block-while-trying-to-open

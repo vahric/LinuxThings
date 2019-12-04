@@ -1,0 +1,18 @@
+Edit sshd_config
+
+sudo vi /etc/ssh/sshd_config
+
+Change setting to ...
+PermitRootLogin yes
+
+Set root user password
+
+sudo passwd root
+
+Restart sshd service
+
+sudo systemctl restart ssh
+
+Logout and Login Again ....
+
+root@udashboard:~# 

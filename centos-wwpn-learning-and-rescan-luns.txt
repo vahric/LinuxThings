@@ -1,0 +1,49 @@
+To see all available HBA's 
+
+ls /sys/class/scsi_host/
+
+Get WWPN of HBA Related Port
+
+[root@virtuozzo1 ~]# cat /sys/class/scsi_host/host1/device/fc_host/host1/port_name 
+0x50060b0000c26e24
+
+Rescan devices ....
+
+[root@virtuozzo1 ~]# /usr/bin/rescan-scsi-bus.sh
+Scanning SCSI subsystem for new devices
+Scanning host 0 for  SCSI target IDs  0 1 2 3 4 5 6 7, all LUNs
+ Scanning for device 0 0 0 4194240 ... 
+NEW: Host: scsi0 Channel: 00 Id: 00 Lun: 4194240
+      Vendor: HP       Model: P220i            Rev: 6.68
+      Type:   RAID                             ANSI SCSI revision: 05
+ Scanning for device 0 0 0 0 ... 
+OLD: Host: scsi0 Channel: 00 Id: 00 Lun: 00
+      Vendor: HP       Model: P220i            Rev: 6.68
+      Type:   RAID                             ANSI SCSI revision: 05
+ Scanning for device 0 1 0 0 ... 0 ... 
+OLD: Host: scsi0 Channel: 01 Id: 00 Lun: 00
+      Vendor: HP       Model: LOGICAL VOLUME   Rev: 6.68
+      Type:   Direct-Access                    ANSI SCSI revision: 05
+Scanning host 1 for  all SCSI target IDs, all LUNs
+ Scanning for device 1 0 0 1 ... 
+OLD: Host: scsi1 Channel: 00 Id: 00 Lun: 01
+      Vendor: IBM      Model: FlashSystem-9840 Rev: 1461
+      Type:   Direct-Access                    ANSI SCSI revision: 05
+sg2 changed: LU not available (PQual 1)    
+OLD: Host: scsi1 Channel: 00 Id: 00 Lun: 00
+      Vendor: IBM      Model: FlashSystem-9840 Rev: 1461
+      Type:   Direct-Access                    ANSI SCSI revision: 05
+Host: scsi1 Channel: 00 Id: 00 Lun: 00
+      Vendor: IBM      Model: FlashSystem-9840 Rev: 1461
+      Type:   Direct-Access                    ANSI SCSI revision: 05
+sg4 changed: LU not available (PQual 3)    
+OLD: Host: scsi1 Channel: 00 Id: 00 Lun: 02
+      Vendor: IBM      Model: FlashSystem-9840 Rev: 1461
+      Type:   Direct-Access                    ANSI SCSI revision: 05
+Scanning host 2 for  all SCSI target IDs, all LUNs
+1 new or changed device(s) found.          
+	[0:0:0:4194240]
+0 remapped or resized device(s) found.		
+0 device(s) removed.                 
+
+Sometimes don't forget reboot is always help you :) !
