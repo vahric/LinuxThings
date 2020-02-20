@@ -1,0 +1,25 @@
+Install yum-plugin-versionlock
+
+yum install yum-plugin-versionlock
+
+Lock the Docker for example 
+
+[root@k8sReadyTemplate ~]# yum versionlock docke*
+Failed to set locale, defaulting to C
+Loaded plugins: fastestmirror, versionlock
+Adding versionlock on: 3:docker-ce-19.03.6-3.el7
+Adding versionlock on: 1:docker-ce-cli-19.03.6-3.el7
+versionlock added: 2
+
+See already locked ones
+
+[root@k8sReadyTemplate ~]# yum versionlock list
+Failed to set locale, defaulting to C
+Loaded plugins: fastestmirror, versionlock
+3:docker-ce-19.03.6-3.el7.*
+1:docker-ce-cli-19.03.6-3.el7.*
+versionlock list done
+
+To remove lock
+
+yum versionlock clear
