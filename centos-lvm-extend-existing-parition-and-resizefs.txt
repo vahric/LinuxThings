@@ -6,7 +6,7 @@ Not: Better way is add additional disk and extend volume group with this new dis
 
 2) Use fdisk to extend related partition for example "fdisk /dev/sda" (or use whats your)
 
-3) Delete existing partition with "d" and recreate with "n" no need to touch anything just "n" and enter,enter,enter and "w" and out to save.
+3) Delete existing partition with "d" (not root partition, related LVM partition )and recreate with "n" no need to touch anything just "n" and enter,enter,enter and "w" and out to save.
 Not: Don't worry no any data will gone somewhere.
 
 4) Execute "partprobe" to re-read partition tables by system to no need restart vm.

@@ -1,0 +1,12 @@
+This article show how to install snmp and set community things ...
+
+yum install net-snmp net-snmp-utils -y
+
+mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.orig
+
+vi /etc/snmp/snmpd.conf
+
+rocommunity xyzyourcommintyname
+
+systemctl enable snmpd
+systemctl restart snmpd
