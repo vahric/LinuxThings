@@ -1,0 +1,30 @@
+To create seperate volume with new disk
+
+fidisk /dev/sdb
+n, enter, enter, enter 
+p to see 
+w and exit
+
+pvcreate /dev/sdb1
+
+Use pvscan or pvdisplay to see it 
+
+Then create Volume Group
+
+vgcreate BitrixDocuments /dev/sdb1
+
+Use vgscan or vgdisplay to see it
+
+Time to create Logical Volume to start using it ...
+
+lvcreate -l 100%FREE -n BitrixStore BitrixDocuments
+
+Use lvscan or lvdisplay to see it
+
+Format disk
+
+mkfs.xfs /dev/Bitrixdocuments/BitrixStore
+
+mkdir /BitrixStore
+
+mount /dev/Bitrixdocuments/BitrixStore /BitrixStore
