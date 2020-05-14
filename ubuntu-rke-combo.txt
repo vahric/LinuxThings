@@ -1,0 +1,33 @@
+*Install Openssh Server if its not installed 
+
+sudo apt-get install openssh-server -y
+
+*Check Firewall Status, should be not running
+
+sudo ufw status
+Status: inactive
+
+or use this 
+
+sudo iptables -L -v -n
+
+*Check SELinux Status, shouldn't find out the command
+
+sudo sestatus
+
+
+*Disable Swap
+
+sudo swapoff -a
+
+Remove or remark the line from /etc/fstab
+sudo vi /etc/fstab
+
+UUID=1d58ffa9-f092-447f-8ae7-c31e0bf6c6c1 / ext4 defaults 0 0
+#/swap.img      none    swap    sw      0       0
+
+sudo reboot
+
+Install Docker
+
+Fallow this link https://github.com/vahric/LinuxThings/blob/master/ubuntu-install-docker-ce.txt

@@ -4,7 +4,7 @@ if already old version of docker is installed remove it
 sudo apt-get remove docker docker-engine docker.io
 
 Install required packages (I believe those packages already install but execute it for double check)
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
 Download and install the key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -54,6 +54,12 @@ To use noroot user execute docker commands (after execute command pls relogin)
 
 sudo usermod -aG docker <username>
 
+Control it 
+
+sudo apt install members
+noroot@r1:~$ members docker
+noroot
+
 Links : 
 
-(User OverlayFS storage driver) https://docs.docker.com/storage/storagedriver/overlayfs-driver/#prerequisites
+(User OverlayFS stsudo usermod -aG dockerorage driver) https://docs.docker.com/storage/storagedriver/overlayfs-driver/#prerequisites
