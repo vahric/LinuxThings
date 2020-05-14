@@ -35,3 +35,12 @@ Fallow this link https://github.com/vahric/LinuxThings/blob/master/ubuntu-instal
 Copy ssh rsa_pub to K8s Nodes for workstation or deployer node where rke run to access nodes passwordless
 
 ssh-copy-id -i .ssh/id_rsa.pub <username>@<ip>
+
+*For Ubuntu not needed but be sure its like that 
+Use sysctl to find out and if you change something apply with sysctl -p
+
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+
+
