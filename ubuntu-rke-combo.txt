@@ -20,7 +20,7 @@ sudo sestatus
 
 sudo swapoff -a
 
-Remove or remark the line from /etc/fstab
+*Remove or remark the line from /etc/fstab
 sudo vi /etc/fstab
 
 UUID=1d58ffa9-f092-447f-8ae7-c31e0bf6c6c1 / ext4 defaults 0 0
@@ -28,6 +28,10 @@ UUID=1d58ffa9-f092-447f-8ae7-c31e0bf6c6c1 / ext4 defaults 0 0
 
 sudo reboot
 
-Install Docker
+*Install Docker
 
 Fallow this link https://github.com/vahric/LinuxThings/blob/master/ubuntu-install-docker-ce.txt
+
+Copy ssh rsa_pub to K8s Nodes for workstation or deployer node where rke run to access nodes passwordless
+
+ssh-copy-id -i .ssh/id_rsa.pub <username>@<ip>
