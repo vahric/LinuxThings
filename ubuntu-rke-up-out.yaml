@@ -1,0 +1,228 @@
+rev:~ vahricmuhtaryan$ rke up --config bizinrkek8scluster.yml 
+INFO[0000] Running RKE version: v1.1.1                  
+INFO[0000] Initiating Kubernetes cluster                
+INFO[0000] [certificates] GenerateServingCertificate is disabled, checking if there are unused kubelet certificates 
+INFO[0000] [certificates] Generating admin certificates and kubeconfig 
+INFO[0000] Successfully Deployed state file at [./bizinrkek8scluster.rkestate] 
+INFO[0000] Building Kubernetes cluster                  
+INFO[0000] [dialer] Setup tunnel for host [xxx.yyy.zzz.132] 
+INFO[0000] [dialer] Setup tunnel for host [xxx.yyy.zzz.131] 
+INFO[0000] [dialer] Setup tunnel for host [xxx.yyy.zzz.130] 
+INFO[0001] [network] No hosts added existing cluster, skipping port check 
+INFO[0001] [certificates] Deploying kubernetes certificates to Cluster nodes 
+INFO[0001] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.130], try #1 
+INFO[0001] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.132], try #1 
+INFO[0001] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.131], try #1 
+INFO[0001] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0001] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0001] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0002] Starting container [cert-deployer] on host [xxx.yyy.zzz.130], try #1 
+INFO[0002] Starting container [cert-deployer] on host [xxx.yyy.zzz.132], try #1 
+INFO[0002] Starting container [cert-deployer] on host [xxx.yyy.zzz.131], try #1 
+INFO[0002] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.131], try #1 
+INFO[0002] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.132], try #1 
+INFO[0002] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.130], try #1 
+INFO[0007] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.131], try #1 
+INFO[0007] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.132], try #1 
+INFO[0007] Removing container [cert-deployer] on host [xxx.yyy.zzz.131], try #1 
+INFO[0007] Removing container [cert-deployer] on host [xxx.yyy.zzz.132], try #1 
+INFO[0007] Checking if container [cert-deployer] is running on host [xxx.yyy.zzz.130], try #1 
+INFO[0007] Removing container [cert-deployer] on host [xxx.yyy.zzz.130], try #1 
+INFO[0008] [reconcile] Rebuilding and updating local kube config 
+INFO[0008] Successfully Deployed local admin kubeconfig at [./kube_config_bizinrkek8scluster.yml] 
+INFO[0008] [reconcile] host [xxx.yyy.zzz.130] is active master on the cluster 
+INFO[0008] [certificates] Successfully deployed kubernetes certificates to Cluster nodes 
+INFO[0008] [file-deploy] Deploying file [/etc/kubernetes/audit-policy.yaml] to node [xxx.yyy.zzz.131] 
+INFO[0008] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0008] Starting container [file-deployer] on host [xxx.yyy.zzz.131], try #1 
+INFO[0009] Successfully started [file-deployer] container on host [xxx.yyy.zzz.131] 
+INFO[0009] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0009] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0009] Container [file-deployer] is still running on host [xxx.yyy.zzz.131] 
+INFO[0010] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0010] Removing container [file-deployer] on host [xxx.yyy.zzz.131], try #1 
+INFO[0010] [remove/file-deployer] Successfully removed container on host [xxx.yyy.zzz.131] 
+INFO[0010] [file-deploy] Deploying file [/etc/kubernetes/audit-policy.yaml] to node [xxx.yyy.zzz.132] 
+INFO[0010] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0010] Starting container [file-deployer] on host [xxx.yyy.zzz.132], try #1 
+INFO[0011] Successfully started [file-deployer] container on host [xxx.yyy.zzz.132] 
+INFO[0011] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0011] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0011] Container [file-deployer] is still running on host [xxx.yyy.zzz.132] 
+INFO[0012] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0012] Removing container [file-deployer] on host [xxx.yyy.zzz.132], try #1 
+INFO[0012] [remove/file-deployer] Successfully removed container on host [xxx.yyy.zzz.132] 
+INFO[0012] [file-deploy] Deploying file [/etc/kubernetes/audit-policy.yaml] to node [xxx.yyy.zzz.130] 
+INFO[0012] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0012] Starting container [file-deployer] on host [xxx.yyy.zzz.130], try #1 
+INFO[0014] Successfully started [file-deployer] container on host [xxx.yyy.zzz.130] 
+INFO[0014] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.130] 
+INFO[0014] Waiting for [file-deployer] container to exit on host [xxx.yyy.zzz.130] 
+INFO[0014] Removing container [file-deployer] on host [xxx.yyy.zzz.130], try #1 
+INFO[0014] [remove/file-deployer] Successfully removed container on host [xxx.yyy.zzz.130] 
+INFO[0014] [/etc/kubernetes/audit-policy.yaml] Successfully deployed audit policy file to Cluster control nodes 
+INFO[0014] [reconcile] Reconciling cluster state        
+INFO[0014] [reconcile] Check etcd hosts to be deleted   
+INFO[0014] [reconcile] Check etcd hosts to be added     
+INFO[0014] [reconcile] Rebuilding and updating local kube config 
+INFO[0014] Successfully Deployed local admin kubeconfig at [./kube_config_bizinrkek8scluster.yml] 
+INFO[0014] [reconcile] host [xxx.yyy.zzz.130] is active master on the cluster 
+INFO[0014] [reconcile] Reconciled cluster state successfully 
+INFO[0014] max_unavailable_worker got rounded down to 0, resetting to 1 
+INFO[0014] Setting maxUnavailable for worker nodes to: 1 
+INFO[0014] Setting maxUnavailable for controlplane nodes to: 1 
+INFO[0014] Pre-pulling kubernetes images                
+INFO[0014] Image [rancher/hyperkube:v1.17.5-rancher1] exists on host [xxx.yyy.zzz.132] 
+INFO[0014] Image [rancher/hyperkube:v1.17.5-rancher1] exists on host [xxx.yyy.zzz.131] 
+INFO[0014] Image [rancher/hyperkube:v1.17.5-rancher1] exists on host [xxx.yyy.zzz.130] 
+INFO[0014] Kubernetes images pulled successfully        
+INFO[0014] [etcd] Building up etcd plane..              
+INFO[0014] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0015] Starting container [etcd-fix-perm] on host [xxx.yyy.zzz.130], try #1 
+INFO[0016] Successfully started [etcd-fix-perm] container on host [xxx.yyy.zzz.130] 
+INFO[0016] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.130] 
+INFO[0016] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.130] 
+INFO[0016] Removing container [etcd-fix-perm] on host [xxx.yyy.zzz.130], try #1 
+INFO[0016] [remove/etcd-fix-perm] Successfully removed container on host [xxx.yyy.zzz.130] 
+INFO[0017] [etcd] Running rolling snapshot container [etcd-snapshot-once] on host [xxx.yyy.zzz.130] 
+INFO[0017] Removing container [etcd-rolling-snapshots] on host [xxx.yyy.zzz.130], try #1 
+INFO[0017] [remove/etcd-rolling-snapshots] Successfully removed container on host [xxx.yyy.zzz.130] 
+INFO[0017] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0017] Starting container [etcd-rolling-snapshots] on host [xxx.yyy.zzz.130], try #1 
+INFO[0018] [etcd] Successfully started [etcd-rolling-snapshots] container on host [xxx.yyy.zzz.130] 
+INFO[0023] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0023] Starting container [rke-bundle-cert] on host [xxx.yyy.zzz.130], try #1 
+INFO[0024] [certificates] Successfully started [rke-bundle-cert] container on host [xxx.yyy.zzz.130] 
+INFO[0024] Waiting for [rke-bundle-cert] container to exit on host [xxx.yyy.zzz.130] 
+INFO[0024] Container [rke-bundle-cert] is still running on host [xxx.yyy.zzz.130] 
+INFO[0025] Waiting for [rke-bundle-cert] container to exit on host [xxx.yyy.zzz.130] 
+INFO[0025] [certificates] successfully saved certificate bundle [/opt/rke/etcd-snapshots//pki.bundle.tar.gz] on host [xxx.yyy.zzz.130] 
+INFO[0025] Removing container [rke-bundle-cert] on host [xxx.yyy.zzz.130], try #1 
+INFO[0025] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0026] Starting container [rke-log-linker] on host [xxx.yyy.zzz.130], try #1 
+INFO[0026] [etcd] Successfully started [rke-log-linker] container on host [xxx.yyy.zzz.130] 
+INFO[0026] Removing container [rke-log-linker] on host [xxx.yyy.zzz.130], try #1 
+INFO[0027] [remove/rke-log-linker] Successfully removed container on host [xxx.yyy.zzz.130] 
+INFO[0027] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0027] Starting container [etcd-fix-perm] on host [xxx.yyy.zzz.131], try #1 
+INFO[0028] Successfully started [etcd-fix-perm] container on host [xxx.yyy.zzz.131] 
+INFO[0028] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0028] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0028] Container [etcd-fix-perm] is still running on host [xxx.yyy.zzz.131] 
+INFO[0029] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0029] Removing container [etcd-fix-perm] on host [xxx.yyy.zzz.131], try #1 
+INFO[0029] [remove/etcd-fix-perm] Successfully removed container on host [xxx.yyy.zzz.131] 
+INFO[0029] [etcd] Running rolling snapshot container [etcd-snapshot-once] on host [xxx.yyy.zzz.131] 
+INFO[0029] Removing container [etcd-rolling-snapshots] on host [xxx.yyy.zzz.131], try #1 
+INFO[0029] [remove/etcd-rolling-snapshots] Successfully removed container on host [xxx.yyy.zzz.131] 
+INFO[0029] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0030] Starting container [etcd-rolling-snapshots] on host [xxx.yyy.zzz.131], try #1 
+INFO[0030] [etcd] Successfully started [etcd-rolling-snapshots] container on host [xxx.yyy.zzz.131] 
+INFO[0035] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0035] Starting container [rke-bundle-cert] on host [xxx.yyy.zzz.131], try #1 
+INFO[0036] [certificates] Successfully started [rke-bundle-cert] container on host [xxx.yyy.zzz.131] 
+INFO[0036] Waiting for [rke-bundle-cert] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0036] Container [rke-bundle-cert] is still running on host [xxx.yyy.zzz.131] 
+INFO[0037] Waiting for [rke-bundle-cert] container to exit on host [xxx.yyy.zzz.131] 
+INFO[0037] [certificates] successfully saved certificate bundle [/opt/rke/etcd-snapshots//pki.bundle.tar.gz] on host [xxx.yyy.zzz.131] 
+INFO[0037] Removing container [rke-bundle-cert] on host [xxx.yyy.zzz.131], try #1 
+INFO[0037] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0037] Starting container [rke-log-linker] on host [xxx.yyy.zzz.131], try #1 
+INFO[0038] [etcd] Successfully started [rke-log-linker] container on host [xxx.yyy.zzz.131] 
+INFO[0038] Removing container [rke-log-linker] on host [xxx.yyy.zzz.131], try #1 
+INFO[0038] [remove/rke-log-linker] Successfully removed container on host [xxx.yyy.zzz.131] 
+INFO[0038] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0038] Starting container [etcd-fix-perm] on host [xxx.yyy.zzz.132], try #1 
+INFO[0039] Successfully started [etcd-fix-perm] container on host [xxx.yyy.zzz.132] 
+INFO[0039] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0039] Waiting for [etcd-fix-perm] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0040] Removing container [etcd-fix-perm] on host [xxx.yyy.zzz.132], try #1 
+INFO[0040] [remove/etcd-fix-perm] Successfully removed container on host [xxx.yyy.zzz.132] 
+INFO[0040] [etcd] Running rolling snapshot container [etcd-snapshot-once] on host [xxx.yyy.zzz.132] 
+INFO[0040] Removing container [etcd-rolling-snapshots] on host [xxx.yyy.zzz.132], try #1 
+INFO[0040] [remove/etcd-rolling-snapshots] Successfully removed container on host [xxx.yyy.zzz.132] 
+INFO[0040] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0040] Starting container [etcd-rolling-snapshots] on host [xxx.yyy.zzz.132], try #1 
+INFO[0041] [etcd] Successfully started [etcd-rolling-snapshots] container on host [xxx.yyy.zzz.132] 
+INFO[0046] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0046] Starting container [rke-bundle-cert] on host [xxx.yyy.zzz.132], try #1 
+INFO[0047] [certificates] Successfully started [rke-bundle-cert] container on host [xxx.yyy.zzz.132] 
+INFO[0047] Waiting for [rke-bundle-cert] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0047] Container [rke-bundle-cert] is still running on host [xxx.yyy.zzz.132] 
+INFO[0048] Waiting for [rke-bundle-cert] container to exit on host [xxx.yyy.zzz.132] 
+INFO[0048] [certificates] successfully saved certificate bundle [/opt/rke/etcd-snapshots//pki.bundle.tar.gz] on host [xxx.yyy.zzz.132] 
+INFO[0048] Removing container [rke-bundle-cert] on host [xxx.yyy.zzz.132], try #1 
+INFO[0048] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0048] Starting container [rke-log-linker] on host [xxx.yyy.zzz.132], try #1 
+INFO[0049] [etcd] Successfully started [rke-log-linker] container on host [xxx.yyy.zzz.132] 
+INFO[0049] Removing container [rke-log-linker] on host [xxx.yyy.zzz.132], try #1 
+INFO[0049] [remove/rke-log-linker] Successfully removed container on host [xxx.yyy.zzz.132] 
+INFO[0049] [etcd] Successfully started etcd plane.. Checking etcd cluster health 
+INFO[0050] [controlplane] Now checking status of node xxx.yyy.zzz.130, try #1 
+INFO[0050] [controlplane] Now checking status of node xxx.yyy.zzz.131, try #1 
+INFO[0050] [controlplane] Now checking status of node xxx.yyy.zzz.132, try #1 
+INFO[0050] [controlplane] Processing controlplane hosts for upgrade 1 at a time 
+INFO[0050] Processing controlplane host xxx.yyy.zzz.130   
+INFO[0050] [controlplane] Now checking status of node xxx.yyy.zzz.130, try #1 
+INFO[0050] [controlplane] Getting list of nodes for upgrade 
+INFO[0051] Upgrade not required for controlplane and worker components of host xxx.yyy.zzz.130 
+INFO[0051] Processing controlplane host xxx.yyy.zzz.131   
+INFO[0051] [controlplane] Now checking status of node xxx.yyy.zzz.131, try #1 
+INFO[0051] [controlplane] Getting list of nodes for upgrade 
+INFO[0051] Upgrade not required for controlplane and worker components of host xxx.yyy.zzz.131 
+INFO[0051] Processing controlplane host xxx.yyy.zzz.132   
+INFO[0051] [controlplane] Now checking status of node xxx.yyy.zzz.132, try #1 
+INFO[0051] [controlplane] Getting list of nodes for upgrade 
+INFO[0052] Upgrade not required for controlplane and worker components of host xxx.yyy.zzz.132 
+INFO[0052] [controlplane] Successfully upgraded Controller Plane.. 
+INFO[0052] [authz] Creating rke-job-deployer ServiceAccount 
+INFO[0052] [authz] rke-job-deployer ServiceAccount created successfully 
+INFO[0052] [authz] Creating system:node ClusterRoleBinding 
+INFO[0052] [authz] system:node ClusterRoleBinding created successfully 
+INFO[0052] [authz] Creating kube-apiserver proxy ClusterRole and ClusterRoleBinding 
+INFO[0052] [authz] kube-apiserver proxy ClusterRole and ClusterRoleBinding created successfully 
+INFO[0052] Successfully Deployed state file at [./bizinrkek8scluster.rkestate] 
+INFO[0052] [state] Saving full cluster state to Kubernetes 
+INFO[0053] [state] Successfully Saved full cluster state to Kubernetes ConfigMap: full-cluster-state 
+INFO[0053] [worker] Upgrading Worker Plane..            
+INFO[0053] [worker] Successfully upgraded Worker Plane.. 
+INFO[0053] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.131] 
+INFO[0053] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.132] 
+INFO[0053] Image [rancher/rke-tools:v0.1.56] exists on host [xxx.yyy.zzz.130] 
+INFO[0053] Starting container [rke-log-cleaner] on host [xxx.yyy.zzz.132], try #1 
+INFO[0053] Starting container [rke-log-cleaner] on host [xxx.yyy.zzz.131], try #1 
+INFO[0053] Starting container [rke-log-cleaner] on host [xxx.yyy.zzz.130], try #1 
+INFO[0053] [cleanup] Successfully started [rke-log-cleaner] container on host [xxx.yyy.zzz.132] 
+INFO[0053] [cleanup] Successfully started [rke-log-cleaner] container on host [xxx.yyy.zzz.131] 
+INFO[0053] Removing container [rke-log-cleaner] on host [xxx.yyy.zzz.132], try #1 
+INFO[0053] Removing container [rke-log-cleaner] on host [xxx.yyy.zzz.131], try #1 
+INFO[0054] [remove/rke-log-cleaner] Successfully removed container on host [xxx.yyy.zzz.132] 
+INFO[0054] [remove/rke-log-cleaner] Successfully removed container on host [xxx.yyy.zzz.131] 
+INFO[0054] [cleanup] Successfully started [rke-log-cleaner] container on host [xxx.yyy.zzz.130] 
+INFO[0054] Removing container [rke-log-cleaner] on host [xxx.yyy.zzz.130], try #1 
+INFO[0054] [remove/rke-log-cleaner] Successfully removed container on host [xxx.yyy.zzz.130] 
+INFO[0054] [sync] Syncing nodes Labels and Taints       
+INFO[0054] [sync] Successfully synced nodes Labels and Taints 
+INFO[0054] [network] Setting up network plugin: flannel 
+INFO[0054] [addons] Saving ConfigMap for addon rke-network-plugin to Kubernetes 
+INFO[0054] [addons] Successfully saved ConfigMap for addon rke-network-plugin to Kubernetes 
+INFO[0054] [addons] Executing deploy job rke-network-plugin 
+INFO[0054] [addons] Setting up coredns                  
+INFO[0054] [addons] Saving ConfigMap for addon rke-coredns-addon to Kubernetes 
+INFO[0054] [addons] Successfully saved ConfigMap for addon rke-coredns-addon to Kubernetes 
+INFO[0054] [addons] Executing deploy job rke-coredns-addon 
+INFO[0060] [addons] CoreDNS deployed successfully       
+INFO[0060] [dns] DNS provider coredns deployed successfully 
+INFO[0060] [addons] Setting up Metrics Server           
+INFO[0060] [addons] Saving ConfigMap for addon rke-metrics-addon to Kubernetes 
+INFO[0060] [addons] Successfully saved ConfigMap for addon rke-metrics-addon to Kubernetes 
+INFO[0060] [addons] Executing deploy job rke-metrics-addon 
+INFO[0065] [addons] Metrics Server deployed successfully 
+INFO[0065] [ingress] Setting up nginx ingress controller 
+INFO[0065] [addons] Saving ConfigMap for addon rke-ingress-controller to Kubernetes 
+INFO[0065] [addons] Successfully saved ConfigMap for addon rke-ingress-controller to Kubernetes 
+INFO[0065] [addons] Executing deploy job rke-ingress-controller 
+INFO[0070] [ingress] ingress controller nginx deployed successfully 
+INFO[0070] [addons] Setting up user addons              
+INFO[0070] [addons] no user addons defined              
+INFO[0070] Finished building Kubernetes cluster successfully 
