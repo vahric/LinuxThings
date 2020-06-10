@@ -1,0 +1,51 @@
+Install another ntp implamentation chrony
+
+yum install -y chrony
+
+Edit Config file /etc/chrony.conf (Delete Centos servers and add ulak one)
+
+server ntp1.ulak.net.tr iburst
+
+systemctl enable chronyd && systemctl start chronyd
+
+Activate NTP
+
+timedatectl set-ntp true
+
+Execute timedatectl to get what happened
+
+timedatectl status
+      Local time: Wed 2020-06-10 14:42:39 +03
+  Universal time: Wed 2020-06-10 11:42:39 UTC
+        RTC time: Wed 2020-06-10 11:42:39
+       Time zone: Europe/Istanbul (+03, +0300)
+     NTP enabled: yes
+NTP synchronized: no
+ RTC in local TZ: no
+      DST active: n/a
+
+You can see that something wrong nothing synced , check it too from chronyc like below ....
+
+chronyc sources
+210 Number of sources = 1
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+^? samur.ulak.net.tr             0   7     0     -     +0ns[   +0ns] +/-    0nso
+
+vi /etc/chrony.conf 
+
+Modify server section ; 
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+server tr.pool.ntp.org iburst
+
+Restart Chrony
+
+systemctl restart chronyd, check it again ....
+
+chronyc sources
+210 Number of sources = 1
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+^* tor.nocabal.de                2   6    17    36   -764us[ -679us] +/-   55ms

@@ -1,0 +1,11 @@
+yum install screen for Centos
+
+Execute command screen to get in new screen
+
+to list 
+
+screen -ls
+
+to attach
+
+screen -x
