@@ -1,0 +1,19 @@
+Create systemd startup file 
+
+vi /etc/systemd/system/disable-thp.service
+
+[Unit]
+Description=Disable Transparent Huge Pages (THP)
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled && echo 'never' > /sys/kernel/mm/transparent_hugepage/defrag"
+
+[Install]
+WantedBy=multi-user.target
+
+systemctl daemon-reload
+
+sudo systemctl start disable-thp
+
+sudo systemctl enable disable-thp

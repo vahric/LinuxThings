@@ -1,0 +1,14 @@
+Modify limits file ...
+
+system wide use sysctl fs.file-max
+
+user level use /etc/security/limits.conf
+
+vi /etc/security/limits.conf
+
+*         hard    nofile      398232
+*         soft    nofile      398232
+*         hard    nproc      398232
+*         soft    nproc      398232
+
+pam ?! ;)
