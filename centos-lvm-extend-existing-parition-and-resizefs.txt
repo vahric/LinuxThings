@@ -38,8 +38,8 @@ if you will add additiona disks to system
 7b) lvextend /dev/Mega/root /dev/sdb1
 7c) lvextend -L +2G /dev/mapper/vg_cloud-LogVol00
 
-8) resize2fs /dev/<volume group name> /lv_root
- 
+8a) resize2fs /dev/<volume group name> /lv_root
+8b) xfs_growfs /dev/<volume group name> 
 
 
 Some Links :

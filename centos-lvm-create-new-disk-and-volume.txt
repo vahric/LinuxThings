@@ -1,6 +1,6 @@
 To create seperate volume with new disk
 
-fidisk /dev/sdb
+fdisk /dev/sdb
 n, enter, enter, enter 
 p to see 
 w and exit
