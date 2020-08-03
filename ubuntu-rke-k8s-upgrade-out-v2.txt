@@ -1,0 +1,497 @@
+rke up --config bizinrkek8scluster.yml
+INFO[0000] Running RKE version: v1.1.4                  
+INFO[0000] Initiating Kubernetes cluster                
+INFO[0000] [certificates] GenerateServingCertificate is disabled, checking if there are unused kubelet certificates 
+INFO[0000] [certificates] Generating admin certificates and kubeconfig 
+INFO[0000] Successfully Deployed state file at [./bizinrkek8scluster.rkestate] 
+INFO[0000] Building Kubernetes cluster                  
+INFO[0000] [dialer] Setup tunnel for host [212.58.24.130] 
+INFO[0000] [dialer] Setup tunnel for host [212.58.24.132] 
+INFO[0000] [dialer] Setup tunnel for host [212.58.24.131] 
+INFO[0002] [network] No hosts added existing cluster, skipping port check 
+INFO[0002] [certificates] Deploying kubernetes certificates to Cluster nodes 
+INFO[0002] Checking if container [cert-deployer] is running on host [212.58.24.130], try #1 
+INFO[0002] Checking if container [cert-deployer] is running on host [212.58.24.132], try #1 
+INFO[0002] Checking if container [cert-deployer] is running on host [212.58.24.131], try #1 
+INFO[0002] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0002] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0002] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0003] Starting container [cert-deployer] on host [212.58.24.131], try #1 
+INFO[0003] Starting container [cert-deployer] on host [212.58.24.132], try #1 
+INFO[0004] Starting container [cert-deployer] on host [212.58.24.130], try #1 
+INFO[0004] Checking if container [cert-deployer] is running on host [212.58.24.131], try #1 
+INFO[0004] Checking if container [cert-deployer] is running on host [212.58.24.132], try #1 
+INFO[0005] Checking if container [cert-deployer] is running on host [212.58.24.130], try #1 
+INFO[0009] Checking if container [cert-deployer] is running on host [212.58.24.131], try #1 
+INFO[0009] Checking if container [cert-deployer] is running on host [212.58.24.132], try #1 
+INFO[0009] Removing container [cert-deployer] on host [212.58.24.131], try #1 
+INFO[0009] Removing container [cert-deployer] on host [212.58.24.132], try #1 
+INFO[0010] Checking if container [cert-deployer] is running on host [212.58.24.130], try #1 
+INFO[0010] Removing container [cert-deployer] on host [212.58.24.130], try #1 
+INFO[0010] [reconcile] Rebuilding and updating local kube config 
+INFO[0010] Successfully Deployed local admin kubeconfig at [./kube_config_bizinrkek8scluster.yml] 
+INFO[0010] [reconcile] host [212.58.24.130] is active master on the cluster 
+INFO[0010] [certificates] Successfully deployed kubernetes certificates to Cluster nodes 
+INFO[0010] [file-deploy] Deploying file [/etc/kubernetes/audit-policy.yaml] to node [212.58.24.131] 
+INFO[0011] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0011] Starting container [file-deployer] on host [212.58.24.131], try #1 
+INFO[0012] Successfully started [file-deployer] container on host [212.58.24.131] 
+INFO[0012] Waiting for [file-deployer] container to exit on host [212.58.24.131] 
+INFO[0012] Waiting for [file-deployer] container to exit on host [212.58.24.131] 
+INFO[0012] Removing container [file-deployer] on host [212.58.24.131], try #1 
+INFO[0012] [remove/file-deployer] Successfully removed container on host [212.58.24.131] 
+INFO[0012] [file-deploy] Deploying file [/etc/kubernetes/audit-policy.yaml] to node [212.58.24.132] 
+INFO[0012] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0012] Starting container [file-deployer] on host [212.58.24.132], try #1 
+INFO[0013] Successfully started [file-deployer] container on host [212.58.24.132] 
+INFO[0013] Waiting for [file-deployer] container to exit on host [212.58.24.132] 
+INFO[0013] Waiting for [file-deployer] container to exit on host [212.58.24.132] 
+INFO[0013] Container [file-deployer] is still running on host [212.58.24.132] 
+INFO[0014] Waiting for [file-deployer] container to exit on host [212.58.24.132] 
+INFO[0014] Removing container [file-deployer] on host [212.58.24.132], try #1 
+INFO[0014] [remove/file-deployer] Successfully removed container on host [212.58.24.132] 
+INFO[0014] [file-deploy] Deploying file [/etc/kubernetes/audit-policy.yaml] to node [212.58.24.130] 
+INFO[0014] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0014] Starting container [file-deployer] on host [212.58.24.130], try #1 
+INFO[0016] Successfully started [file-deployer] container on host [212.58.24.130] 
+INFO[0016] Waiting for [file-deployer] container to exit on host [212.58.24.130] 
+INFO[0016] Waiting for [file-deployer] container to exit on host [212.58.24.130] 
+INFO[0016] Removing container [file-deployer] on host [212.58.24.130], try #1 
+INFO[0016] [remove/file-deployer] Successfully removed container on host [212.58.24.130] 
+INFO[0016] [/etc/kubernetes/audit-policy.yaml] Successfully deployed audit policy file to Cluster control nodes 
+INFO[0016] [reconcile] Reconciling cluster state        
+INFO[0016] [reconcile] Check etcd hosts to be deleted   
+INFO[0016] [reconcile] Check etcd hosts to be added     
+INFO[0016] [reconcile] Rebuilding and updating local kube config 
+INFO[0016] Successfully Deployed local admin kubeconfig at [./kube_config_bizinrkek8scluster.yml] 
+INFO[0016] [reconcile] host [212.58.24.130] is active master on the cluster 
+INFO[0016] [reconcile] Reconciled cluster state successfully 
+INFO[0016] max_unavailable_worker got rounded down to 0, resetting to 1 
+INFO[0016] Setting maxUnavailable for worker nodes to: 1 
+INFO[0016] Setting maxUnavailable for controlplane nodes to: 1 
+INFO[0016] Pre-pulling kubernetes images                
+INFO[0016] Pulling image [rancher/hyperkube:v1.17.9-rancher1] on host [212.58.24.132], try #1 
+INFO[0016] Pulling image [rancher/hyperkube:v1.17.9-rancher1] on host [212.58.24.130], try #1 
+INFO[0016] Pulling image [rancher/hyperkube:v1.17.9-rancher1] on host [212.58.24.131], try #1 
+INFO[0057] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.131] 
+INFO[0061] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.132] 
+INFO[0113] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.130] 
+INFO[0113] Kubernetes images pulled successfully        
+INFO[0113] [etcd] Building up etcd plane..              
+INFO[0113] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0117] Starting container [etcd-fix-perm] on host [212.58.24.130], try #1 
+INFO[0118] Successfully started [etcd-fix-perm] container on host [212.58.24.130] 
+INFO[0118] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.130] 
+INFO[0118] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.130] 
+INFO[0118] Container [etcd-fix-perm] is still running on host [212.58.24.130] 
+INFO[0119] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.130] 
+INFO[0119] Removing container [etcd-fix-perm] on host [212.58.24.130], try #1 
+INFO[0120] [remove/etcd-fix-perm] Successfully removed container on host [212.58.24.130] 
+INFO[0120] [etcd] Running rolling snapshot container [etcd-snapshot-once] on host [212.58.24.130] 
+INFO[0120] Removing container [etcd-rolling-snapshots] on host [212.58.24.130], try #1 
+INFO[0120] [remove/etcd-rolling-snapshots] Successfully removed container on host [212.58.24.130] 
+INFO[0120] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0121] Starting container [etcd-rolling-snapshots] on host [212.58.24.130], try #1 
+INFO[0121] [etcd] Successfully started [etcd-rolling-snapshots] container on host [212.58.24.130] 
+INFO[0127] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0127] Starting container [rke-bundle-cert] on host [212.58.24.130], try #1 
+INFO[0128] [certificates] Successfully started [rke-bundle-cert] container on host [212.58.24.130] 
+INFO[0128] Waiting for [rke-bundle-cert] container to exit on host [212.58.24.130] 
+INFO[0128] Container [rke-bundle-cert] is still running on host [212.58.24.130] 
+INFO[0129] Waiting for [rke-bundle-cert] container to exit on host [212.58.24.130] 
+INFO[0129] [certificates] successfully saved certificate bundle [/opt/rke/etcd-snapshots//pki.bundle.tar.gz] on host [212.58.24.130] 
+INFO[0129] Removing container [rke-bundle-cert] on host [212.58.24.130], try #1 
+INFO[0129] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0130] Starting container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0131] [etcd] Successfully started [rke-log-linker] container on host [212.58.24.130] 
+INFO[0131] Removing container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0131] [remove/rke-log-linker] Successfully removed container on host [212.58.24.130] 
+INFO[0132] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0133] Starting container [etcd-fix-perm] on host [212.58.24.131], try #1 
+INFO[0134] Successfully started [etcd-fix-perm] container on host [212.58.24.131] 
+INFO[0134] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.131] 
+INFO[0134] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.131] 
+INFO[0134] Container [etcd-fix-perm] is still running on host [212.58.24.131] 
+INFO[0135] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.131] 
+INFO[0135] Removing container [etcd-fix-perm] on host [212.58.24.131], try #1 
+INFO[0135] [remove/etcd-fix-perm] Successfully removed container on host [212.58.24.131] 
+INFO[0135] [etcd] Running rolling snapshot container [etcd-snapshot-once] on host [212.58.24.131] 
+INFO[0135] Removing container [etcd-rolling-snapshots] on host [212.58.24.131], try #1 
+INFO[0135] [remove/etcd-rolling-snapshots] Successfully removed container on host [212.58.24.131] 
+INFO[0135] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0136] Starting container [etcd-rolling-snapshots] on host [212.58.24.131], try #1 
+INFO[0136] [etcd] Successfully started [etcd-rolling-snapshots] container on host [212.58.24.131] 
+INFO[0142] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0142] Starting container [rke-bundle-cert] on host [212.58.24.131], try #1 
+INFO[0143] [certificates] Successfully started [rke-bundle-cert] container on host [212.58.24.131] 
+INFO[0143] Waiting for [rke-bundle-cert] container to exit on host [212.58.24.131] 
+INFO[0143] Container [rke-bundle-cert] is still running on host [212.58.24.131] 
+INFO[0144] Waiting for [rke-bundle-cert] container to exit on host [212.58.24.131] 
+INFO[0144] [certificates] successfully saved certificate bundle [/opt/rke/etcd-snapshots//pki.bundle.tar.gz] on host [212.58.24.131] 
+INFO[0144] Removing container [rke-bundle-cert] on host [212.58.24.131], try #1 
+INFO[0144] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0145] Starting container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0145] [etcd] Successfully started [rke-log-linker] container on host [212.58.24.131] 
+INFO[0146] Removing container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0146] [remove/rke-log-linker] Successfully removed container on host [212.58.24.131] 
+INFO[0147] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0148] Starting container [etcd-fix-perm] on host [212.58.24.132], try #1 
+INFO[0148] Successfully started [etcd-fix-perm] container on host [212.58.24.132] 
+INFO[0148] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.132] 
+INFO[0148] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.132] 
+INFO[0148] Container [etcd-fix-perm] is still running on host [212.58.24.132] 
+INFO[0149] Waiting for [etcd-fix-perm] container to exit on host [212.58.24.132] 
+INFO[0149] Removing container [etcd-fix-perm] on host [212.58.24.132], try #1 
+INFO[0149] [remove/etcd-fix-perm] Successfully removed container on host [212.58.24.132] 
+INFO[0150] [etcd] Running rolling snapshot container [etcd-snapshot-once] on host [212.58.24.132] 
+INFO[0150] Removing container [etcd-rolling-snapshots] on host [212.58.24.132], try #1 
+INFO[0150] [remove/etcd-rolling-snapshots] Successfully removed container on host [212.58.24.132] 
+INFO[0150] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0150] Starting container [etcd-rolling-snapshots] on host [212.58.24.132], try #1 
+INFO[0151] [etcd] Successfully started [etcd-rolling-snapshots] container on host [212.58.24.132] 
+INFO[0156] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0156] Starting container [rke-bundle-cert] on host [212.58.24.132], try #1 
+INFO[0157] [certificates] Successfully started [rke-bundle-cert] container on host [212.58.24.132] 
+INFO[0157] Waiting for [rke-bundle-cert] container to exit on host [212.58.24.132] 
+INFO[0157] Container [rke-bundle-cert] is still running on host [212.58.24.132] 
+INFO[0158] Waiting for [rke-bundle-cert] container to exit on host [212.58.24.132] 
+INFO[0158] [certificates] successfully saved certificate bundle [/opt/rke/etcd-snapshots//pki.bundle.tar.gz] on host [212.58.24.132] 
+INFO[0158] Removing container [rke-bundle-cert] on host [212.58.24.132], try #1 
+INFO[0158] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0158] Starting container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0159] [etcd] Successfully started [rke-log-linker] container on host [212.58.24.132] 
+INFO[0159] Removing container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0159] [remove/rke-log-linker] Successfully removed container on host [212.58.24.132] 
+INFO[0159] [etcd] Successfully started etcd plane.. Checking etcd cluster health 
+INFO[0160] [controlplane] Now checking status of node 212.58.24.130, try #1 
+INFO[0160] [controlplane] Now checking status of node 212.58.24.131, try #1 
+INFO[0160] [controlplane] Now checking status of node 212.58.24.132, try #1 
+INFO[0160] [controlplane] Processing controlplane hosts for upgrade 1 at a time 
+INFO[0160] Processing controlplane host 212.58.24.130   
+INFO[0160] [controlplane] Now checking status of node 212.58.24.130, try #1 
+INFO[0161] [controlplane] Getting list of nodes for upgrade 
+INFO[0161] Upgrading controlplane components for control host 212.58.24.130 
+INFO[0161] Checking if container [service-sidekick] is running on host [212.58.24.130], try #1 
+INFO[0161] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0161] Removing container [service-sidekick] on host [212.58.24.130], try #1 
+INFO[0161] [remove/service-sidekick] Successfully removed container on host [212.58.24.130] 
+INFO[0162] Checking if container [kube-apiserver] is running on host [212.58.24.130], try #1 
+INFO[0162] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.130] 
+INFO[0162] Checking if container [old-kube-apiserver] is running on host [212.58.24.130], try #1 
+INFO[0163] Stopping container [kube-apiserver] on host [212.58.24.130] with stopTimeoutDuration [5s], try #1 
+INFO[0163] Waiting for [kube-apiserver] container to exit on host [212.58.24.130] 
+INFO[0163] Renaming container [kube-apiserver] to [old-kube-apiserver] on host [212.58.24.130], try #1 
+INFO[0164] Starting container [kube-apiserver] on host [212.58.24.130], try #1 
+INFO[0164] [controlplane] Successfully updated [kube-apiserver] container on host [212.58.24.130] 
+INFO[0164] Removing container [old-kube-apiserver] on host [212.58.24.130], try #1 
+INFO[0164] [healthcheck] Start Healthcheck on service [kube-apiserver] on host [212.58.24.130] 
+INFO[0185] [healthcheck] service [kube-apiserver] on host [212.58.24.130] is healthy 
+INFO[0185] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0185] Starting container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0186] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.130] 
+INFO[0186] Removing container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0187] [remove/rke-log-linker] Successfully removed container on host [212.58.24.130] 
+INFO[0187] Checking if container [kube-controller-manager] is running on host [212.58.24.130], try #1 
+INFO[0187] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.130] 
+INFO[0187] Checking if container [old-kube-controller-manager] is running on host [212.58.24.130], try #1 
+INFO[0187] Stopping container [kube-controller-manager] on host [212.58.24.130] with stopTimeoutDuration [5s], try #1 
+INFO[0188] Waiting for [kube-controller-manager] container to exit on host [212.58.24.130] 
+INFO[0188] Renaming container [kube-controller-manager] to [old-kube-controller-manager] on host [212.58.24.130], try #1 
+INFO[0188] Starting container [kube-controller-manager] on host [212.58.24.130], try #1 
+INFO[0189] [controlplane] Successfully updated [kube-controller-manager] container on host [212.58.24.130] 
+INFO[0189] Removing container [old-kube-controller-manager] on host [212.58.24.130], try #1 
+INFO[0189] [healthcheck] Start Healthcheck on service [kube-controller-manager] on host [212.58.24.130] 
+INFO[0190] [healthcheck] service [kube-controller-manager] on host [212.58.24.130] is healthy 
+INFO[0191] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0191] Starting container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0192] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.130] 
+INFO[0192] Removing container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0193] [remove/rke-log-linker] Successfully removed container on host [212.58.24.130] 
+INFO[0193] Checking if container [kube-scheduler] is running on host [212.58.24.130], try #1 
+INFO[0193] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.130] 
+INFO[0193] Checking if container [old-kube-scheduler] is running on host [212.58.24.130], try #1 
+INFO[0193] Stopping container [kube-scheduler] on host [212.58.24.130] with stopTimeoutDuration [5s], try #1 
+INFO[0193] Waiting for [kube-scheduler] container to exit on host [212.58.24.130] 
+INFO[0193] Renaming container [kube-scheduler] to [old-kube-scheduler] on host [212.58.24.130], try #1 
+INFO[0194] Starting container [kube-scheduler] on host [212.58.24.130], try #1 
+INFO[0194] [controlplane] Successfully updated [kube-scheduler] container on host [212.58.24.130] 
+INFO[0194] Removing container [old-kube-scheduler] on host [212.58.24.130], try #1 
+INFO[0194] [healthcheck] Start Healthcheck on service [kube-scheduler] on host [212.58.24.130] 
+INFO[0197] [healthcheck] service [kube-scheduler] on host [212.58.24.130] is healthy 
+INFO[0197] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0197] Starting container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0198] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.130] 
+INFO[0198] Removing container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0199] [remove/rke-log-linker] Successfully removed container on host [212.58.24.130] 
+INFO[0199] Upgrading workerplane components for control host 212.58.24.130 
+INFO[0199] Checking if container [service-sidekick] is running on host [212.58.24.130], try #1 
+INFO[0199] [sidekick] Sidekick container already created on host [212.58.24.130] 
+INFO[0199] Checking if container [kubelet] is running on host [212.58.24.130], try #1 
+INFO[0199] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.130] 
+INFO[0199] Checking if container [old-kubelet] is running on host [212.58.24.130], try #1 
+INFO[0200] Stopping container [kubelet] on host [212.58.24.130] with stopTimeoutDuration [5s], try #1 
+INFO[0200] Waiting for [kubelet] container to exit on host [212.58.24.130] 
+INFO[0200] Renaming container [kubelet] to [old-kubelet] on host [212.58.24.130], try #1 
+INFO[0200] Starting container [kubelet] on host [212.58.24.130], try #1 
+INFO[0201] [worker] Successfully updated [kubelet] container on host [212.58.24.130] 
+INFO[0201] Removing container [old-kubelet] on host [212.58.24.130], try #1 
+INFO[0201] [healthcheck] Start Healthcheck on service [kubelet] on host [212.58.24.130] 
+INFO[0225] [healthcheck] service [kubelet] on host [212.58.24.130] is healthy 
+INFO[0225] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0226] Starting container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0227] [worker] Successfully started [rke-log-linker] container on host [212.58.24.130] 
+INFO[0227] Removing container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0228] [remove/rke-log-linker] Successfully removed container on host [212.58.24.130] 
+INFO[0228] Checking if container [kube-proxy] is running on host [212.58.24.130], try #1 
+INFO[0228] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.130] 
+INFO[0228] Checking if container [old-kube-proxy] is running on host [212.58.24.130], try #1 
+INFO[0228] Stopping container [kube-proxy] on host [212.58.24.130] with stopTimeoutDuration [5s], try #1 
+INFO[0228] Waiting for [kube-proxy] container to exit on host [212.58.24.130] 
+INFO[0228] Renaming container [kube-proxy] to [old-kube-proxy] on host [212.58.24.130], try #1 
+INFO[0229] Starting container [kube-proxy] on host [212.58.24.130], try #1 
+INFO[0229] [worker] Successfully updated [kube-proxy] container on host [212.58.24.130] 
+INFO[0229] Removing container [old-kube-proxy] on host [212.58.24.130], try #1 
+INFO[0229] [healthcheck] Start Healthcheck on service [kube-proxy] on host [212.58.24.130] 
+INFO[0230] [healthcheck] service [kube-proxy] on host [212.58.24.130] is healthy 
+INFO[0230] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0230] Starting container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0231] [worker] Successfully started [rke-log-linker] container on host [212.58.24.130] 
+INFO[0232] Removing container [rke-log-linker] on host [212.58.24.130], try #1 
+INFO[0232] [remove/rke-log-linker] Successfully removed container on host [212.58.24.130] 
+INFO[0232] [controlplane] Now checking status of node 212.58.24.130, try #1 
+INFO[0233] Processing controlplane host 212.58.24.131   
+INFO[0233] [controlplane] Now checking status of node 212.58.24.131, try #1 
+INFO[0233] [controlplane] Getting list of nodes for upgrade 
+INFO[0234] Upgrading controlplane components for control host 212.58.24.131 
+INFO[0234] Checking if container [service-sidekick] is running on host [212.58.24.131], try #1 
+INFO[0234] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0234] Removing container [service-sidekick] on host [212.58.24.131], try #1 
+INFO[0234] [remove/service-sidekick] Successfully removed container on host [212.58.24.131] 
+INFO[0235] Checking if container [kube-apiserver] is running on host [212.58.24.131], try #1 
+INFO[0235] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.131] 
+INFO[0235] Checking if container [old-kube-apiserver] is running on host [212.58.24.131], try #1 
+INFO[0235] Stopping container [kube-apiserver] on host [212.58.24.131] with stopTimeoutDuration [5s], try #1 
+INFO[0235] Waiting for [kube-apiserver] container to exit on host [212.58.24.131] 
+INFO[0235] Renaming container [kube-apiserver] to [old-kube-apiserver] on host [212.58.24.131], try #1 
+INFO[0235] Starting container [kube-apiserver] on host [212.58.24.131], try #1 
+INFO[0236] [controlplane] Successfully updated [kube-apiserver] container on host [212.58.24.131] 
+INFO[0236] Removing container [old-kube-apiserver] on host [212.58.24.131], try #1 
+INFO[0236] [healthcheck] Start Healthcheck on service [kube-apiserver] on host [212.58.24.131] 
+INFO[0249] [healthcheck] service [kube-apiserver] on host [212.58.24.131] is healthy 
+INFO[0249] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0250] Starting container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0250] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.131] 
+INFO[0250] Removing container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0250] [remove/rke-log-linker] Successfully removed container on host [212.58.24.131] 
+INFO[0251] Checking if container [kube-controller-manager] is running on host [212.58.24.131], try #1 
+INFO[0251] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.131] 
+INFO[0251] Checking if container [old-kube-controller-manager] is running on host [212.58.24.131], try #1 
+INFO[0251] Stopping container [kube-controller-manager] on host [212.58.24.131] with stopTimeoutDuration [5s], try #1 
+INFO[0251] Waiting for [kube-controller-manager] container to exit on host [212.58.24.131] 
+INFO[0251] Renaming container [kube-controller-manager] to [old-kube-controller-manager] on host [212.58.24.131], try #1 
+INFO[0251] Starting container [kube-controller-manager] on host [212.58.24.131], try #1 
+INFO[0252] [controlplane] Successfully updated [kube-controller-manager] container on host [212.58.24.131] 
+INFO[0252] Removing container [old-kube-controller-manager] on host [212.58.24.131], try #1 
+INFO[0252] [healthcheck] Start Healthcheck on service [kube-controller-manager] on host [212.58.24.131] 
+INFO[0253] [healthcheck] service [kube-controller-manager] on host [212.58.24.131] is healthy 
+INFO[0253] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0253] Starting container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0254] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.131] 
+INFO[0254] Removing container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0254] [remove/rke-log-linker] Successfully removed container on host [212.58.24.131] 
+INFO[0255] Checking if container [kube-scheduler] is running on host [212.58.24.131], try #1 
+INFO[0255] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.131] 
+INFO[0255] Checking if container [old-kube-scheduler] is running on host [212.58.24.131], try #1 
+INFO[0255] Stopping container [kube-scheduler] on host [212.58.24.131] with stopTimeoutDuration [5s], try #1 
+INFO[0255] Waiting for [kube-scheduler] container to exit on host [212.58.24.131] 
+INFO[0255] Renaming container [kube-scheduler] to [old-kube-scheduler] on host [212.58.24.131], try #1 
+INFO[0255] Starting container [kube-scheduler] on host [212.58.24.131], try #1 
+INFO[0256] [controlplane] Successfully updated [kube-scheduler] container on host [212.58.24.131] 
+INFO[0256] Removing container [old-kube-scheduler] on host [212.58.24.131], try #1 
+INFO[0256] [healthcheck] Start Healthcheck on service [kube-scheduler] on host [212.58.24.131] 
+INFO[0257] [healthcheck] service [kube-scheduler] on host [212.58.24.131] is healthy 
+INFO[0257] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0257] Starting container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0258] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.131] 
+INFO[0258] Removing container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0258] [remove/rke-log-linker] Successfully removed container on host [212.58.24.131] 
+INFO[0258] Upgrading workerplane components for control host 212.58.24.131 
+INFO[0258] Checking if container [service-sidekick] is running on host [212.58.24.131], try #1 
+INFO[0258] [sidekick] Sidekick container already created on host [212.58.24.131] 
+INFO[0258] Checking if container [kubelet] is running on host [212.58.24.131], try #1 
+INFO[0258] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.131] 
+INFO[0258] Checking if container [old-kubelet] is running on host [212.58.24.131], try #1 
+INFO[0258] Stopping container [kubelet] on host [212.58.24.131] with stopTimeoutDuration [5s], try #1 
+INFO[0259] Waiting for [kubelet] container to exit on host [212.58.24.131] 
+INFO[0259] Renaming container [kubelet] to [old-kubelet] on host [212.58.24.131], try #1 
+INFO[0259] Starting container [kubelet] on host [212.58.24.131], try #1 
+INFO[0259] [worker] Successfully updated [kubelet] container on host [212.58.24.131] 
+INFO[0259] Removing container [old-kubelet] on host [212.58.24.131], try #1 
+INFO[0259] [healthcheck] Start Healthcheck on service [kubelet] on host [212.58.24.131] 
+INFO[0284] [healthcheck] service [kubelet] on host [212.58.24.131] is healthy 
+INFO[0284] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0284] Starting container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0285] [worker] Successfully started [rke-log-linker] container on host [212.58.24.131] 
+INFO[0285] Removing container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0285] [remove/rke-log-linker] Successfully removed container on host [212.58.24.131] 
+INFO[0285] Checking if container [kube-proxy] is running on host [212.58.24.131], try #1 
+INFO[0286] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.131] 
+INFO[0286] Checking if container [old-kube-proxy] is running on host [212.58.24.131], try #1 
+INFO[0286] Stopping container [kube-proxy] on host [212.58.24.131] with stopTimeoutDuration [5s], try #1 
+INFO[0286] Waiting for [kube-proxy] container to exit on host [212.58.24.131] 
+INFO[0286] Renaming container [kube-proxy] to [old-kube-proxy] on host [212.58.24.131], try #1 
+INFO[0286] Starting container [kube-proxy] on host [212.58.24.131], try #1 
+INFO[0286] [worker] Successfully updated [kube-proxy] container on host [212.58.24.131] 
+INFO[0286] Removing container [old-kube-proxy] on host [212.58.24.131], try #1 
+INFO[0286] [healthcheck] Start Healthcheck on service [kube-proxy] on host [212.58.24.131] 
+INFO[0288] [healthcheck] service [kube-proxy] on host [212.58.24.131] is healthy 
+INFO[0288] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0288] Starting container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0288] [worker] Successfully started [rke-log-linker] container on host [212.58.24.131] 
+INFO[0288] Removing container [rke-log-linker] on host [212.58.24.131], try #1 
+INFO[0289] [remove/rke-log-linker] Successfully removed container on host [212.58.24.131] 
+INFO[0289] [controlplane] Now checking status of node 212.58.24.131, try #1 
+INFO[0289] Processing controlplane host 212.58.24.132   
+INFO[0289] [controlplane] Now checking status of node 212.58.24.132, try #1 
+INFO[0289] [controlplane] Getting list of nodes for upgrade 
+INFO[0291] Upgrading controlplane components for control host 212.58.24.132 
+INFO[0291] Checking if container [service-sidekick] is running on host [212.58.24.132], try #1 
+INFO[0291] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0291] Removing container [service-sidekick] on host [212.58.24.132], try #1 
+INFO[0291] [remove/service-sidekick] Successfully removed container on host [212.58.24.132] 
+INFO[0291] Checking if container [kube-apiserver] is running on host [212.58.24.132], try #1 
+INFO[0291] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.132] 
+INFO[0291] Checking if container [old-kube-apiserver] is running on host [212.58.24.132], try #1 
+INFO[0291] Stopping container [kube-apiserver] on host [212.58.24.132] with stopTimeoutDuration [5s], try #1 
+INFO[0292] Waiting for [kube-apiserver] container to exit on host [212.58.24.132] 
+INFO[0292] Renaming container [kube-apiserver] to [old-kube-apiserver] on host [212.58.24.132], try #1 
+INFO[0292] Starting container [kube-apiserver] on host [212.58.24.132], try #1 
+INFO[0293] [controlplane] Successfully updated [kube-apiserver] container on host [212.58.24.132] 
+INFO[0293] Removing container [old-kube-apiserver] on host [212.58.24.132], try #1 
+INFO[0293] [healthcheck] Start Healthcheck on service [kube-apiserver] on host [212.58.24.132] 
+INFO[0305] [healthcheck] service [kube-apiserver] on host [212.58.24.132] is healthy 
+INFO[0305] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0305] Starting container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0306] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.132] 
+INFO[0306] Removing container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0306] [remove/rke-log-linker] Successfully removed container on host [212.58.24.132] 
+INFO[0306] Checking if container [kube-controller-manager] is running on host [212.58.24.132], try #1 
+INFO[0307] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.132] 
+INFO[0307] Checking if container [old-kube-controller-manager] is running on host [212.58.24.132], try #1 
+INFO[0307] Stopping container [kube-controller-manager] on host [212.58.24.132] with stopTimeoutDuration [5s], try #1 
+INFO[0307] Waiting for [kube-controller-manager] container to exit on host [212.58.24.132] 
+INFO[0307] Renaming container [kube-controller-manager] to [old-kube-controller-manager] on host [212.58.24.132], try #1 
+INFO[0307] Starting container [kube-controller-manager] on host [212.58.24.132], try #1 
+INFO[0308] [controlplane] Successfully updated [kube-controller-manager] container on host [212.58.24.132] 
+INFO[0308] Removing container [old-kube-controller-manager] on host [212.58.24.132], try #1 
+INFO[0308] [healthcheck] Start Healthcheck on service [kube-controller-manager] on host [212.58.24.132] 
+INFO[0315] [healthcheck] service [kube-controller-manager] on host [212.58.24.132] is healthy 
+INFO[0316] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0316] Starting container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0316] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.132] 
+INFO[0316] Removing container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0317] [remove/rke-log-linker] Successfully removed container on host [212.58.24.132] 
+INFO[0317] Checking if container [kube-scheduler] is running on host [212.58.24.132], try #1 
+INFO[0317] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.132] 
+INFO[0317] Checking if container [old-kube-scheduler] is running on host [212.58.24.132], try #1 
+INFO[0317] Stopping container [kube-scheduler] on host [212.58.24.132] with stopTimeoutDuration [5s], try #1 
+INFO[0317] Waiting for [kube-scheduler] container to exit on host [212.58.24.132] 
+INFO[0317] Renaming container [kube-scheduler] to [old-kube-scheduler] on host [212.58.24.132], try #1 
+INFO[0318] Starting container [kube-scheduler] on host [212.58.24.132], try #1 
+INFO[0318] [controlplane] Successfully updated [kube-scheduler] container on host [212.58.24.132] 
+INFO[0318] Removing container [old-kube-scheduler] on host [212.58.24.132], try #1 
+INFO[0318] [healthcheck] Start Healthcheck on service [kube-scheduler] on host [212.58.24.132] 
+INFO[0320] [healthcheck] service [kube-scheduler] on host [212.58.24.132] is healthy 
+INFO[0320] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0320] Starting container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0321] [controlplane] Successfully started [rke-log-linker] container on host [212.58.24.132] 
+INFO[0321] Removing container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0321] [remove/rke-log-linker] Successfully removed container on host [212.58.24.132] 
+INFO[0321] Upgrading workerplane components for control host 212.58.24.132 
+INFO[0321] Checking if container [service-sidekick] is running on host [212.58.24.132], try #1 
+INFO[0321] [sidekick] Sidekick container already created on host [212.58.24.132] 
+INFO[0322] Checking if container [kubelet] is running on host [212.58.24.132], try #1 
+INFO[0322] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.132] 
+INFO[0322] Checking if container [old-kubelet] is running on host [212.58.24.132], try #1 
+INFO[0322] Stopping container [kubelet] on host [212.58.24.132] with stopTimeoutDuration [5s], try #1 
+INFO[0322] Waiting for [kubelet] container to exit on host [212.58.24.132] 
+INFO[0322] Renaming container [kubelet] to [old-kubelet] on host [212.58.24.132], try #1 
+INFO[0322] Starting container [kubelet] on host [212.58.24.132], try #1 
+INFO[0323] [worker] Successfully updated [kubelet] container on host [212.58.24.132] 
+INFO[0323] Removing container [old-kubelet] on host [212.58.24.132], try #1 
+INFO[0323] [healthcheck] Start Healthcheck on service [kubelet] on host [212.58.24.132] 
+INFO[0349] [healthcheck] service [kubelet] on host [212.58.24.132] is healthy 
+INFO[0349] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0349] Starting container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0350] [worker] Successfully started [rke-log-linker] container on host [212.58.24.132] 
+INFO[0350] Removing container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0350] [remove/rke-log-linker] Successfully removed container on host [212.58.24.132] 
+INFO[0350] Checking if container [kube-proxy] is running on host [212.58.24.132], try #1 
+INFO[0350] Image [rancher/hyperkube:v1.17.9-rancher1] exists on host [212.58.24.132] 
+INFO[0350] Checking if container [old-kube-proxy] is running on host [212.58.24.132], try #1 
+INFO[0350] Stopping container [kube-proxy] on host [212.58.24.132] with stopTimeoutDuration [5s], try #1 
+INFO[0351] Waiting for [kube-proxy] container to exit on host [212.58.24.132] 
+INFO[0351] Renaming container [kube-proxy] to [old-kube-proxy] on host [212.58.24.132], try #1 
+INFO[0351] Starting container [kube-proxy] on host [212.58.24.132], try #1 
+INFO[0352] [worker] Successfully updated [kube-proxy] container on host [212.58.24.132] 
+INFO[0352] Removing container [old-kube-proxy] on host [212.58.24.132], try #1 
+INFO[0352] [healthcheck] Start Healthcheck on service [kube-proxy] on host [212.58.24.132] 
+INFO[0353] [healthcheck] service [kube-proxy] on host [212.58.24.132] is healthy 
+INFO[0353] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0354] Starting container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0354] [worker] Successfully started [rke-log-linker] container on host [212.58.24.132] 
+INFO[0354] Removing container [rke-log-linker] on host [212.58.24.132], try #1 
+INFO[0355] [remove/rke-log-linker] Successfully removed container on host [212.58.24.132] 
+INFO[0355] [controlplane] Now checking status of node 212.58.24.132, try #1 
+INFO[0355] [controlplane] Successfully upgraded Controller Plane.. 
+INFO[0355] [authz] Creating rke-job-deployer ServiceAccount 
+INFO[0355] [authz] rke-job-deployer ServiceAccount created successfully 
+INFO[0355] [authz] Creating system:node ClusterRoleBinding 
+INFO[0355] [authz] system:node ClusterRoleBinding created successfully 
+INFO[0355] [authz] Creating kube-apiserver proxy ClusterRole and ClusterRoleBinding 
+INFO[0355] [authz] kube-apiserver proxy ClusterRole and ClusterRoleBinding created successfully 
+INFO[0355] Successfully Deployed state file at [./bizinrkek8scluster.rkestate] 
+INFO[0355] [state] Saving full cluster state to Kubernetes 
+INFO[0356] [state] Successfully Saved full cluster state to Kubernetes ConfigMap: full-cluster-state 
+INFO[0356] [worker] Upgrading Worker Plane..            
+INFO[0356] [worker] Successfully upgraded Worker Plane.. 
+INFO[0357] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.132] 
+INFO[0357] Starting container [rke-log-cleaner] on host [212.58.24.132], try #1 
+INFO[0357] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.130] 
+INFO[0357] Image [rancher/rke-tools:v0.1.59] exists on host [212.58.24.131] 
+INFO[0358] [cleanup] Successfully started [rke-log-cleaner] container on host [212.58.24.132] 
+INFO[0358] Starting container [rke-log-cleaner] on host [212.58.24.131], try #1 
+INFO[0358] Starting container [rke-log-cleaner] on host [212.58.24.130], try #1 
+INFO[0358] Removing container [rke-log-cleaner] on host [212.58.24.132], try #1 
+INFO[0358] [remove/rke-log-cleaner] Successfully removed container on host [212.58.24.132] 
+INFO[0358] [cleanup] Successfully started [rke-log-cleaner] container on host [212.58.24.131] 
+INFO[0358] Removing container [rke-log-cleaner] on host [212.58.24.131], try #1 
+INFO[0359] [remove/rke-log-cleaner] Successfully removed container on host [212.58.24.131] 
+INFO[0359] [cleanup] Successfully started [rke-log-cleaner] container on host [212.58.24.130] 
+INFO[0359] Removing container [rke-log-cleaner] on host [212.58.24.130], try #1 
+INFO[0359] [remove/rke-log-cleaner] Successfully removed container on host [212.58.24.130] 
+INFO[0359] [sync] Syncing nodes Labels and Taints       
+INFO[0359] [sync] Successfully synced nodes Labels and Taints 
+INFO[0359] [network] Setting up network plugin: flannel 
+INFO[0359] [addons] Saving ConfigMap for addon rke-network-plugin to Kubernetes 
+INFO[0360] [addons] Successfully saved ConfigMap for addon rke-network-plugin to Kubernetes 
+INFO[0360] [addons] Executing deploy job rke-network-plugin 
+INFO[0370] [addons] Setting up coredns                  
+INFO[0370] [addons] Saving ConfigMap for addon rke-coredns-addon to Kubernetes 
+INFO[0370] [addons] Successfully saved ConfigMap for addon rke-coredns-addon to Kubernetes 
+INFO[0370] [addons] Executing deploy job rke-coredns-addon 
+INFO[0370] [addons] CoreDNS deployed successfully       
+INFO[0370] [dns] DNS provider coredns deployed successfully 
+INFO[0370] [addons] Setting up Metrics Server           
+INFO[0370] [addons] Saving ConfigMap for addon rke-metrics-addon to Kubernetes 
+INFO[0370] [addons] Successfully saved ConfigMap for addon rke-metrics-addon to Kubernetes 
+INFO[0370] [addons] Executing deploy job rke-metrics-addon 
+INFO[0370] [addons] Metrics Server deployed successfully 
+INFO[0370] [ingress] Setting up nginx ingress controller 
+INFO[0370] [addons] Saving ConfigMap for addon rke-ingress-controller to Kubernetes 
+INFO[0370] [addons] Successfully saved ConfigMap for addon rke-ingress-controller to Kubernetes 
+INFO[0370] [addons] Executing deploy job rke-ingress-controller 
+INFO[0381] [ingress] ingress controller nginx deployed successfully 
+INFO[0381] [addons] Setting up user addons              
+INFO[0381] [addons] no user addons defined              
+INFO[0381] Finished building Kubernetes cluster successfully 
