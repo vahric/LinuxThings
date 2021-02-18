@@ -1,0 +1,39 @@
+https://www.thegeekdiary.com/what-are-the-network-bonding-modes-in-centos-rhel/
+
+cd /etc/sysconfig/network-scripts/
+
+
+vi ifcfg-bond0
+
+DEVICE=bond0
+TYPE=Bond
+NAME=bond0
+BONDING_MASTER=yes
+BOOTPROTO=none
+ONBOOT=yes
+IPADDR=10.46.55.135
+NETMASK=255.255.255.224
+BONDING_OPTS="mode=1 miimon=100"
+
+
+Lets Add Nics to Bonds
+
+TYPE=Ethernet
+BOOTPROTO=none
+NAME=ens161
+UUID=33f41ca9-7dd9-4535-8ae8-612e8283e5d5
+DEVICE=ens161
+ONBOOT=yes
+MASTER=bond1
+SLAVE=yes
+
+
+
+TYPE=Ethernet
+BOOTPROTO=none
+ONBOOT=yes
+MASTER=bond1
+SLAVE=yes
+NAME=ens193
+UUID=cc8f9b5e-9c56-4ccc-acb6-2416af72d5b8
+DEVICE=ens193

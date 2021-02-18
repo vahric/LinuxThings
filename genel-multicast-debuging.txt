@@ -1,0 +1,296 @@
+https://ref.onixs.biz/lost-multicast-packets-troubleshooting.html
+
+OnixS Homepage
+Lost multicast packets troubleshooting guide
+Version 1.1.0
+
+You are here: Home > Lost multicast packets troubleshooting
+
+Contents
+Introduction
+Diagnostic
+Network adapter buffer overflow diagnostic
+Linux
+Windows
+Operating system kernel network buffers overflow diagnostic
+Linux
+Windows
+Application-level socket buffer overflow diagnostic
+Linux
+Tuning
+Network adapter buffer tuning
+Linux
+Operating system kernel network buffers tuning
+Linux
+Application-level socket buffer tuning
+Linux, Windows
+Additional Tools
+Tcpdump
+MulticastTest
+External Resources
+Appendix A. "Solarflare's Application Acceleration/OpenOnload"
+Diagnostic
+Solarflare network adapter buffer overflow diagnostic
+Onload specific application-level socket buffer overflow diagnostic
+Onload specific packet buffer overflow diagnostic
+Tuning
+Network adapter buffer tuning
+External Resources
+Introduction
+The purpose of this document is to help to find the reason of lost multicast packets and perform some tweaks to minimize such losses.
+
+There are several reasons of the multicast packets losses.
+
+The UDP protocol itself trades reliability of performance and does not guarantee the datagrams delivery. Therefore, the packet could be lost during the network transmission.
+
+Even if the packet reaches the network node, it does not always mean that the application receives it because during processing the received packet goes through several levels, on each level there could be a loss.
+
+The typical path of a network packet is shown on Figure 1.
+
+Dataway Linux
+Figure 1
+First, the network adapter (NIC) receives and process the network packet. The NIC has its own hardware ring buffer. When the network data flow is higher than the NIC can process, the newest coming data will overwrite the oldest ones. The possibility of this depends on the NIC characteristics such as computing performance and hardware buffer size.
+
+Next, after processing by the NIC it comes to the operating system buffer, which is also can be overflowed. All the packets from all the NICs for all the applications and auxiliary packets go through this buffer.
+
+Therefore, the possibility of the loss on the operating system level depends on:
+
+the size of the operating system buffer
+the general system performance
+the general system load
+the network-related system load
+It also depends on the amount of NICs even if an application does not use the NIC: it creates some additional load by auxiliary protocols like ARP or ICMPv6.
+
+Then, it comes to the socket buffer from which the application takes the packet. If the application is unable to take the packet from the socket on time, the buffer will be overflowed and the packet will be lost. Therefore, the possibility of the loss on the application level depends on:
+
+the socket buffer size
+how fast the application takes the data.
+Diagnostic
+Network adapter buffer overflow diagnostic
+Linux
+On Linux the network adapter buffer overflow could be detected using the netstat -i –udp <NIC> command, where the RX-DRP column shows the number of packets dropped by the adapter.
+
+For example:
+
+netstat -i –udp eth0
+
+Iface	MTU	Met	RX-OK	RX-ERR	RX-DRP	RX-OVR	TX-OK	TX-ERR	TX-DRP	TX-OVR	Flg
+eth0	1500	0	109208	0	3	0	82809	0	0	0	BMRU
+This output identifies that three packets were dropped by the adapter.
+
+To alleviate the network adapter buffer overflow the size of the network adapter buffer should be increased.
+
+Windows
+On Windows the network adapter buffer overflow could be detected using the netstat -e command.
+
+For example:
+
+netstat -e
+
+Interface Statistics
+Received	Sent
+Bytes	2126595129	3580282555
+Unicast packets	100602496	384905740
+Non-unicast packets	3975342	1522900
+Discards	2	0
+Errors	3	0
+Unknown protocols	0
+Discards shows the number of packets rejected by the NIC (perhaps because they were damaged).
+
+Errors shows the number of errors that occurred during either the sending or receiving process (perhaps because a problem with the NIC).
+
+Operating system kernel network buffers overflow diagnostic
+Linux
+On Linux the watch -d "cat /proc/net/snmp | grep -w Udp" command, InErrors column shows the number of UDP packets that are dropped when the operating system UDP queue is overflowed.
+
+The operating system buffer overflow could be alleviated by:
+
+Increasing the size of the operating system kernel network buffers.
+Excluding the operating system kernel network buffers from the packet path by using the user space network stack / kernel-bypass middleware (e.g. Solarflare's OpenOnload).
+Turning off all unused network-related applications and services to minimize the load on the system.
+Leaving only reasonable amount of working NICs on your system.
+For example:
+
+Udp:	InDatagrams	NoPorts	InErrors	OutDatagrams	RcvbufErrors	SndbufErrors
+Udp:	1273	25	9	6722	0	0
+This output identifies that nine packets were dropped by the operating system.
+
+You can also see this on a per-process basis using the watch -d "cat /proc/net/pid/snmp | grep -w Udp" command.
+
+Windows
+To check UDP statistics on Windows use command: netstat -s -p udp
+
+UDP Statistics for IPv4
+
+Datagrams Received	=	85463
+No Ports	=	123
+Receive Errors	=	0
+Datagrams Sent	=	75022
+Receive Errors indicates amount of OS-related receive errors.
+
+Application-level socket buffer overflow diagnostic
+Linux
+On Linux the watch -d "cat /proc/net/snmp | grep -w Udp" command, RcvbufErrors column shows the number of UDP packets that are dropped when the application socket buffer is overflowed.
+
+For example:
+
+Udp:	InDatagrams	NoPorts	InErrors	OutDatagrams	RcvbufErrors	SndbufErrors
+Udp:	8273	25	0	8720	15	0
+This output identifies that 15 packets were dropped by the application.
+
+You can also see this on a per-process basis using the watch -d "cat /proc/net/pid/snmp | grep -w Udp" command.
+
+The application-level socket buffer overflow could be alleviated by:
+
+The application servicing its receiving socket buffer faster (e.g. by using a dedicating thread for receiving UDP packets and/or increasing its priority).
+The application increasing the size of its receiving socket buffer. Sometimes the system administrator also has to increase global socket buffer limits, otherwise the application-level increase will have no effect.
+Assigning the application (or its receiving thread) to the dedicated CPU core.
+Increasing the priority of the application (e.g. using the nice and ionice Linux commands).
+Turning off all unused network-related applications and services to minimize the load on the system.
+Tuning
+Network adapter buffer tuning
+Linux
+To see the adapter's buffer settings run the ethtool -g <NIC> command.
+
+For example:
+
+ethtool –g eth1:
+
+Ring parameters for eth1:
+Pre-set maximums:
+RX:	4096
+RX Mini:	0
+RX Jumbo:	0
+TX:	4096
+Current hardware settings:
+RX:	4096
+RX Mini:	0
+RX Jumbo:	0
+TX:	1024
+There are two sections in the output. The first section is Pre-set maximums that indicate the maximum values that could be set for each available parameter. The second section shows current value of each parameter.
+
+To set the RX ring buffer size up, run the ethtool -G <NIC> rx NEW-BUFFER-SIZE Command.
+
+The change will take effect immediately and requires no restart to the system or even the network stack.
+
+These changes are made to the network card itself and not to the operating system. This does not change the kernel network stack parameters but the NIC parameters in the firmware.
+
+A larger ring size can absorb larger packet bursts without drops, but may reduce efficiency because the working set size is increased.
+
+The typical ring buffer size value for modern NICs is about 4096, if your card has less please consider hardware upgrade.
+
+Operating system kernel network buffers tuning
+Linux
+Run the sysctl -A | grep net | grep 'mem\|backlog' | grep 'udp_mem\|rmem_max\|max_backlog' command to check the current settings of the system level buffers.
+
+For example:
+
+net.core.rmem_max	=	131071
+net.core.netdev_max_backlog	=	1000
+net.ipv4.udp_mem	=	1501632	2002176	3003264
+Increase the maximum socket receive buffer size to 64 MB: 
+sysctl -w net.core.rmem_max=67108864
+
+Increase the maximum total buffer-space allocatable. This is measured in units of pages (4096 bytes): 
+sysctl -w net.ipv4.udp_mem="262144 327680 393216"
+
+Note that net.ipv4.udp_mem works in pages, so to calculate the size in bytes multiply values by PAGE_SIZE, where PAGE_SIZE = 4096 (4K). Then the max udp_mem size in bytes is 385152 * 4096 = 1,577,582,592.
+
+Increase the queue size for incoming packets: 
+sysctl -w net.core.netdev_max_backlog=2000
+
+Check the new settings by running the sysctl -A | grep net | grep 'mem\|backlog' | grep 'udp_mem\|rmem_max\|max_backlog' command again.
+
+To make these changes permanent edit or create the /etc/sysctl.conf file and add the changes there.
+
+Application-level socket buffer tuning
+Linux, Windows
+To reduce packet losses, the application must be able to take the date from the socket buffer before it is overwritten by the newest ones. Therefore, the socket level buffer should be increased. In OnixS Market Data Handlers this can be done by using the HandlerSettings::udpSocketBufferSize configuration settings. The recommended value is 8388608 (8 MiB).
+
+Additional Tools
+If you experience the multicast packet losses in your application, it could be worth running some independent tools to learn more about the issue.
+
+Tcpdump
+Tcpdump is a a powerful command-line packet analyzer that allows to catch all the multicast data directly from the NIC bypassing the operating system network stack.
+
+For example:
+tcpdump -n multicast -i <NIC>
+
+Tcpdump also supports many sets of differing filtering strategies. This allows catching network packets for a single or multiple multicast groups and comparing it with the data received by the application. If the application shows some packet gaps but tcpdump receives all the data, it means that the data are being lost somewhere in the network stack or in the application. Otherwise, most probably the reason is network-related or NIC-related.
+
+MulticastTest
+This tool could be obtained from OnixS Support Team (support@onixs.biz). Unlike tcpdump, it reads the data from the application level socket. Using this tool allows to receive the data the same way the application does and this can help to detect the losses inside the application.
+
+External Resources
+http://en.wikipedia.org/wiki/User_Datagram_Protocol
+On Linux: "man 7 udp"
+Appendix A. "Solarflare's Application Acceleration/OpenOnload"
+Dataway Solarflare
+Figure 2
+ 
+
+Using Solarflare's Application Acceleration/OpenOnload middleware allows packets to bypass the system kernel. This gives some performance benefits because the application does not do network-related kernel calls. This is shown on the Figure 2.
+
+Diagnostic
+Solarflare network adapter buffer overflow diagnostic
+Linux
+The ethtool -S <NIC> | grep rx_nodesc_drop_cnt command allows to collect statistics directly from the Solarflare network adapter.
+
+The rx_nodesc_drop_cnt increasing over time is an indication that the adapter drops packets due to a lack of OpenOnload-provided receiving buffers.
+
+For example:
+
+ethtool -S eth0 | grep rx_nodesc_drop_cnt
+rx_nodesc_drop_cnt: 0
+This output identifies that packets are not being dropped at the Solarflare network adapter level.
+
+OpenOnload specific application-level socket buffer overflow diagnostic
+Linux
+The onload_stackdump lots | grep oflow_drop command allows to check for dropped packets at the socket level:
+
+For example:
+
+onload_stackdump lots | grep oflow_drop
+rcv: oflow_drop=0(0%) mem_drop=0 eagain=0 pktinfo=0 q_max=0
+rcv: oflow_drop=0(0%) mem_drop=0 eagain=0 pktinfo=0 q_max=0
+This output identifies that packets are not being dropped at the socket level.
+
+OpenOnload specific packet buffer overflow diagnostic
+Linux
+The onload_stackdump lots | grep memory_pressure command allows to check for packet dropped when Onload fails to allocate a packet buffer on the receive path:
+
+For example:
+
+onload_stackdump lots | grep memory_pressure
+memory_pressure_enter: 0 
+memory_pressure_exit_poll: 0 
+memory_pressure_exit_recv: 0 
+memory_pressure_drops: 0 
+tcp_memory_pressures: 0 
+This output identifies that packets are not being dropped at the packet buffer level.
+
+Tuning
+Network adapter buffer tuning
+Linux
+If the OpenOnload middleware is used and if packet loss is observed at the network level due to a lack of Onload-provided receive buffering try increasing the size of the receive descriptor queue size via the EF_RXQ_SIZE environment variable.
+
+For example: 
+export EF_RXQ_SIZE=value
+
+Valid values: 512, 1024, 2048 or 4096.
+
+If the OpenOnload middleware is used and if packet loss is observed at the network level due to memory pressure (memory_pressure_drops) try increasing the upper limit on numbers of packet buffers in each OpenOnload stack via the EF_MAX_PACKETS environment variable.
+
+For example: 
+export EF_MAX_PACKETS=98304 
+or 
+EF_MAX_PACKETS=98304 onload your_application
+
+External Resources
+OpenOnload® "Onload User Guide" includes useful references:
+
+"Eliminating Drops" (page 71 in Issue 33)
+"Identifying Memory Pressure" (page 145 in Issue 33)
+Note that registration is required for access.
+
+© OnixS | Sales Support: sales@onixs.biz | Technical Support:support@onixs.biz | T: +44 20 7117 0111

@@ -1,0 +1,52 @@
+Install vlan and ifenslace packages but first control 
+
+apt list --installed | grep vlan
+apt list --installed | grep ifenslave
+
+To install ....
+
+apt-get install vlan
+apt-get install ifenslave
+
+Start to config ...
+
+vi /etc/network/interfaces
+
+auto bond0
+iface bond0 inet manual
+bond-mode 1
+bond-miimon 100
+bond-slaves none
+
+auto ens192
+iface ens192 inet manual
+bond-master bond0
+bond-primary ens192
+
+auto ens224
+iface ens224 inet manual
+bond-master bond0
+
+auto bond0.600
+iface bond0.600 inet static
+	address 172.16.1.11
+	netmask 255.255.255.0
+	vlan-raw-device bond0
+	up ip route add 192.168.40.2 via 172.16.1.100 || true
+
+auto bond0.601
+iface bond0.601 inet static
+	address 172.17.1.11
+	netmask 255.255.255.0
+	vlan-raw-device bond0
+	up ip route add 192.168.40.3 via 172.17.1.100 || true
+
+Not : 
+
+If you do not need permenent route remove up ip route bla bla .....
+
+Links : 
+
+About interface file explanations ....
+
+http://manpages.ubuntu.com/manpages/trusty/man5/interfaces.5.html

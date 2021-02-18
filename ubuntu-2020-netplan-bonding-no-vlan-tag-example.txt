@@ -1,0 +1,19 @@
+
+network:
+  bonds:
+    bond0:
+      addresses:
+      - 1.1.1.254/24
+      gateway4: 1.1.1.2
+      interfaces:
+      - ens160
+      - ens192
+      nameservers:
+        addresses:
+        - 8.8.8.8
+      parameters:
+        mode: balance-rr
+   ethernets:
+     ens160: {}
+     ens192: {}
+   version: 2 

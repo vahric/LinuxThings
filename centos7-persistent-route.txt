@@ -1,0 +1,11 @@
+if we are talking about persistent route for bond0 then 
+
+go to /etc/sysconfig/network-scripts/
+
+Create a file which we call route-bond0
+
+
+vi route-bond0
+
+4.0.142.154 via 1.6.5.225 dev bond0
+84.0.142.170 via 1.6.5.225 dev bond0

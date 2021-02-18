@@ -1,0 +1,31 @@
+To monitor Uubuntu Focal Linux via snmp
+
+In this installation we are not using snmp v3, its for SNMPv1/SNMPv2c
+With snmp3 people started to use rouser and rwuser ....
+
+Install related packages 
+
+sudo apt install snmpd snmp libsnmp-dev
+
+Conf file is vi /etc/keepalived/keepalived.conf 
+
+Lets get in ...
+
+sudo vi /etc/snmp/snmpd.conf 
+>Add related lines related position ....
+
+First comment out default localhost and listen from all ip address ipv4 or ipv6
+#agentaddress  127.0.0.1,[::1]
+agentAddress udp:161,udp6:[::1]:161,tcp:161,tcp6:[::1]:161
+
+Disable everyone system view and specify read only community as a password
+#rocommunity  public default -V systemonly
+#rocommunity6 public default -V systemonly
+rocommunity youPassWordLikeCommunityName
+
+Restart Service and check status
+
+sudo systemctl restart snmpd
+sudo systemctl status snmpd
+
+Default its enabled at the startup , you can check it via status too ...

@@ -1,0 +1,103 @@
+https://kadirsert.blogspot.com/2018/06/creating-multiple-vlans-over-bonding.htmlhttps://unixutils.com/bonding-routing-network-performance-tuning-blueprint-linux/ (iff hata veriyor)
+https://www.thomas-krenn.com/en/wiki/Two_Default_Gateways_on_One_System
+
+
+cd /etc/sysconfig/network-scripts/
+
+vi ifcfg-bond0
+
+DEVICE=bond0
+TYPE=Bond
+NAME=bond0
+BONDING_MASTER=yes
+BOOTPROTO=none
+ONBOOT=yes
+BONDING_OPTS="mode=1 miimon=100"
+
+
+Lets Add Nics to Bonds
+
+vi ens161
+
+TYPE=Ethernet
+BOOTPROTO=none
+NAME=ens161
+UUID=33f41ca9-7dd9-4535-8ae8-612e8283e5d5
+DEVICE=ens161
+ONBOOT=yes
+MASTER=bond1
+SLAVE=yes
+
+
+vi ens193
+
+TYPE=Ethernet
+BOOTPROTO=none
+ONBOOT=yes
+MASTER=bond1
+SLAVE=yes
+NAME=ens193
+UUID=cc8f9b5e-9c56-4ccc-acb6-2416af72d5b8
+DEVICE=ens193
+
+Create VLANs
+
+vi ifcfg-bond0.500
+
+DEVICE=bond0.500
+BOOTPROTO=none
+ONBOOT=yes
+IPADDR=
+NETMASK=255.255.255.0
+NETWORK=
+VLAN=yes
+
+vi ifcfg-bond0.600
+
+DEVICE=bond0.600
+BOOTPROTO=none
+ONBOOT=yes
+IPADDR=
+NETMASK=255.255.255.0
+NETWORK=
+VLAN=yes
+
+Route Table
+
+echo '1 vlan_500' >> /etc/iproute2/rt_tables
+echo '2 vlan_600' >> /etc/iproute2/rt_tables
+
+Persistent Routes
+
+/etc/sysconfig/network-scripts/
+
+vi route-bond0.500
+
+10.46.50.224/27 dev bond0.500 src 10.46.50.234 table vlan_500
+default via 10.46.50.225 dev bond0.500 table vlan_500
+
+vi route-bond0.600
+
+10.46.55.128/27 dev bond0.600 src 10.46.55.136 table vlan_600
+default via 10.46.55.129 dev bond0.600 table vlan_600
+
+Another Example 
+
+194.0.142.133 via 10.46.50.225 dev bond0.500
+194.0.142.38 via 10.46.50.225 dev bond0.500
+
+
+Persistent Policy Routes
+
+/etc/sysconfig/network-scripts/
+
+
+vi rule-bond0.500
+
+from 10.46.50.234/32 table vlan_500
+to 10.46.50.234/32 table vlan_500
+
+vi rule-bond0.600
+
+from 10.46.55.136/32 table vlan_600
+to 10.46.55.136/32 table vlan_600
