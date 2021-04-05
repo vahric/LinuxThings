@@ -7,7 +7,7 @@ Install related packages
 
 sudo apt install snmpd snmp libsnmp-dev
 
-Conf file is vi /etc/keepalived/keepalived.conf 
+Conf file is vi /etc/snmp/snmpd.conf
 
 Lets get in ...
 
